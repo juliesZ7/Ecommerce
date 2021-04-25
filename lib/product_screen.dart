@@ -15,7 +15,7 @@ class _ProductScreenState extends State<ProductScreen> {
         id: 'ID01',
         image: 'assets/graphics/samsung-galaxy-note-9.jpg',
         name: 'Samsung Galaxy Note 9',
-        price: 8000000,
+        price: '\$80',
         description: 'Description');
   }
 
