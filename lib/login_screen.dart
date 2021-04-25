@@ -1,4 +1,6 @@
+import 'package:ecommerce/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'route.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
                   child: Text(
                     'Login',
                     style: TextStyle(
@@ -34,12 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Text(
                 'Username',
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1),
               ),
@@ -61,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Text(
                 'Password',
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1),
               ),
@@ -74,8 +76,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintStyle:
                         TextStyle(fontSize: 15, color: Colors.grey[400])),
               ),
+              SizedBox(height: 10),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  )),
               SizedBox(
-                height: 50,
+                height: 40,
               ),
               Center(
                 child: Container(
@@ -89,7 +98,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         colors: [Colors.blueAccent, Colors.greenAccent]),
                   ),
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
                       child: Text(
                         'Login',
                         style: TextStyle(

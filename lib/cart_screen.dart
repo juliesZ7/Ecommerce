@@ -10,11 +10,6 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-    }
-
     return Scaffold(
         appBar: AppBar(
           title: Column(
@@ -26,7 +21,7 @@ class _CartScreenState extends State<CartScreen> {
               Text(
                 'Item: 3',
                 style: TextStyle(
-                    color: Colors.black.withOpacity(0.7), fontSize: 10),
+                    color: Colors.black.withOpacity(0.7), fontSize: 15),
               )
             ],
           ),
@@ -34,33 +29,40 @@ class _CartScreenState extends State<CartScreen> {
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
-        body: Padding(
+        body: Container(
+            color: Colors.white,
             padding: const EdgeInsets.all(30),
             child: ListView.separated(
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 100,
+                    height: 120,
                     child: Row(
                       children: [
-                        Image(
-                          image: AssetImage('${product[index].image}'),
+                        Container(
+                          height: 50,
+                          child: Image(
+                            image: AssetImage('${product[index].image}'),
+                          ),
                         ),
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${product[index].name}',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                              ),
-                              Text(
-                                '${product[index].price}',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                              )
-                            ],
+                          child: Container(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '${product[index].name}',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 18),
+                                ),
+                                Text(
+                                  '${product[index].price}',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         TextButton(
