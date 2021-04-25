@@ -1,5 +1,6 @@
 import 'package:ecommerce/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 import 'route.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -99,7 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/cart');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
                       child: Text(
                         'Login',

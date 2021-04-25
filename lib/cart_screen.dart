@@ -66,7 +66,9 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                          },
                           child: Icon(
                             Icons.delete,
                             color: Colors.grey,
