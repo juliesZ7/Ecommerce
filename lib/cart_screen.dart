@@ -11,28 +11,30 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Column(
-            children: [
-              Text(
-                'Your Cart',
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                'Item: 3',
-                style: TextStyle(
-                    color: Colors.black.withOpacity(0.7), fontSize: 15),
-              )
-            ],
-          ),
-          elevation: 0,
-          centerTitle: true,
-          backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Column(
+          children: [
+            Text(
+              'Your Cart',
+              style: TextStyle(color: Colors.black),
+            ),
+            Text(
+              'Item: 3',
+              style:
+                  TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 15),
+            )
+          ],
         ),
-        body: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(30),
-            child: ListView.separated(
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            ListView.separated(
                 itemBuilder: (context, index) {
                   return Container(
                     height: 120,
@@ -66,9 +68,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {
-                            
-                          },
+                          onPressed: () {},
                           child: Icon(
                             Icons.delete,
                             color: Colors.grey,
@@ -81,6 +81,11 @@ class _CartScreenState extends State<CartScreen> {
                 separatorBuilder: (context, index) {
                   return Divider();
                 },
-                itemCount: product.length)));
+                itemCount: product.length),
+            TextButton(onPressed: () {}, child: Text('Buy'))
+          ],
+        ),
+      ),
+    );
   }
 }
