@@ -8,6 +8,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  ProductInfoModel productInfo = ProductInfoModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class _CartScreenState extends State<CartScreen> {
               style: TextStyle(color: Colors.black),
             ),
             Text(
-              'Item: 3',
+              'Items: ${cart.length}',
               style:
                   TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 15),
             )
@@ -29,61 +30,110 @@ class _CartScreenState extends State<CartScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          children: [
-            ListView.separated(
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 120,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 50,
-                          child: Image(
-                            image: AssetImage('${product[index].image}'),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${product[index].name}',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 18),
+      body: SafeArea(
+        child: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.all(30),
+          child: (cart.length != 0)
+              ? Column(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        child: ListView.separated(
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 120,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      child: Image(
+                                        image:
+                                            AssetImage('${cart[index].image}'),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${cart[index].name}',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 18),
+                                            ),
+                                            Text(
+                                              '${cart[index].price}',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          productInfo.removeItems(cart, index);
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  '${product[index].price}',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return Divider();
+                            },
+                            itemCount: cart.length),
+                      ),
                     ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Divider();
-                },
-                itemCount: product.length),
-            TextButton(onPressed: () {}, child: Text('Buy'))
-          ],
+                    Container(
+                        height: 50,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.blueAccent,
+                                  Colors.greenAccent
+                                ])),
+                        child: TextButton(
+                            style: TextButton.styleFrom(
+                              primary: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                print('press');
+                              });
+                            },
+                            child: Center(
+                              child: Text(
+                                'Buy',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ))),
+                  ],
+                )
+              : Center(
+                  child: Column(
+                  children: [
+                    Text('No Items'),
+                  ],
+                )),
         ),
       ),
     );
