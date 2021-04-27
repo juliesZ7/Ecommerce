@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import '../product_info.dart';
 
 class ProductScreen extends StatefulWidget {
+  var id;
   @override
   _ProductScreenState createState() => _ProductScreenState();
 }
 
 class _ProductScreenState extends State<ProductScreen> {
   ProductInfoModel productInfoModel = ProductInfoModel();
-  int index = 1;
-  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +42,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Center(
                       child: Container(
                           height: MediaQuery.of(context).size.height * 0.3,
-                          child: Image.asset('${product[index].image}')),
+                          child: Image.asset('${productInfoModel}')),
                     ),
                     SizedBox(
                       height: 50,

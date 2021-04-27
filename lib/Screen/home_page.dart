@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../product_info.dart';
 
 class HomePage extends StatelessWidget {
+  ProductScreen productScreen = ProductScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +62,7 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return TextButton(
                           onPressed: () {
+                            productScreen.id = '${product[index].id}';
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
