@@ -1,4 +1,5 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
+import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import '../product_info.dart';
 
@@ -39,39 +40,70 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.grey[300],
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('Best Sale'),
-              Expanded(
-                child: Container(
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10),
+                child: Text(
+                  'Best Sale',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                child: Expanded(
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Container(
-                            height: 200,
-                            width: 150,
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-                                    height: 100,
-                                    width: 150,
-                                    child: Image(
-                                        image: AssetImage(
-                                            '${product[index].image}'))),
-                                Text('${product[index].name}'),
-                                Text('${product[index].price}'),
-                              ],
-                            ));
+                        return TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductScreen()));
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: 150,
+                              height: 200,
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Container(
+                                      width: 100,
+                                      child: Image(
+                                          image: AssetImage(
+                                              '${product[index].image}'))),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('${product[index].name}',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w400)),
+                                      Text('${product[index].price}',
+                                          style: TextStyle(
+                                              color: Colors.redAccent,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                                ],
+                              )),
+                        );
                       },
-                      separatorBuilder: (context, index) => Divider(),
+                      separatorBuilder: (context, index) => SizedBox(
+                            width: 10,
+                          ),
                       itemCount: product.length),
                 ),
               ),
