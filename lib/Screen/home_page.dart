@@ -3,8 +3,12 @@ import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import '../product_info.dart';
 
-class HomePage extends StatelessWidget {
-  ProductScreen productScreen = ProductScreen();
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,11 +66,14 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return TextButton(
                           onPressed: () {
-                            productScreen.id = '${product[index].id}';
-                            Navigator.push(
+                            setState(() {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ProductScreen()));
+                                    builder: (context) => ProductScreen(
+                                          index: index,
+                                        )));
+                            });
                           },
                           child: Container(
                               decoration: BoxDecoration(

@@ -2,6 +2,8 @@ import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import '../route.dart';
+import 'package:ecommerce/Authentication_Service.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,8 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController username = new TextEditingController();
-  TextEditingController password = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 5,
               ),
               TextFormField(
-                controller: username,
+                controller: emailController,
                 decoration: InputDecoration(
                     isDense: true,
                     prefixIcon: Icon(Icons.person),
@@ -69,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     letterSpacing: 1),
               ),
               TextFormField(
-                controller: password,
+                controller: passwordController,
                 decoration: InputDecoration(
                     isDense: true,
                     prefixIcon: Icon(Icons.lock),
@@ -100,6 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextButton(
                       onPressed: () {
+                        context.read<AuthenticationServices>().signIn(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim());
                         Navigator.push(
                             context,
                             MaterialPageRoute(

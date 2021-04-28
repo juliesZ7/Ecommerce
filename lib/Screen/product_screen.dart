@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import '../product_info.dart';
 
 class ProductScreen extends StatefulWidget {
-  var id;
+  final index;
+  ProductScreen({this.index});
   @override
-  _ProductScreenState createState() => _ProductScreenState();
+  _ProductScreenState createState() => _ProductScreenState(index: index);
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  ProductInfoModel productInfoModel = ProductInfoModel();
+  final index;
+  _ProductScreenState({this.index});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,15 +20,26 @@ class _ProductScreenState extends State<ProductScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartScreen()));
-              },
-              icon: Icon(
-                Icons.shopping_cart,
-                color: Colors.blueAccent,
-              ))
+          Row(
+            children: [
+              Text(
+                '${cart.length}',
+                style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700),
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
+                  },
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.blueAccent,
+                  ))
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -42,7 +55,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Center(
                       child: Container(
                           height: MediaQuery.of(context).size.height * 0.3,
-                          child: Image.asset('${productInfoModel}')),
+                          child: Image.asset('${product[index].image}')),
                     ),
                     SizedBox(
                       height: 50,
