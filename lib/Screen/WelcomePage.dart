@@ -1,3 +1,5 @@
+import 'package:ecommerce/Screen/login_screen.dart';
+import 'package:ecommerce/Screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -42,7 +44,14 @@ class _WelcomePageState extends State<WelcomePage> {
                     'Sign In',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    });
+                  },
                 ),
               ),
               SizedBox(
@@ -63,7 +72,14 @@ class _WelcomePageState extends State<WelcomePage> {
                     'Sign Up',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterScreen()));
+                    });
+                  },
                 ),
               )
             ],

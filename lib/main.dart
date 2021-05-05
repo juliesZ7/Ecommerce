@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: AuthenticationWrapper()));
+            debugShowCheckedModeBanner: false, home: WelcomePage()));
   }
 }
 
@@ -44,6 +44,6 @@ class AuthenticationWrapper extends StatelessWidget {
     if (firebaseUser != null) {
       return HomePage();
     }
-    return WelcomePage();
+    return LoginScreen();
   }
 }

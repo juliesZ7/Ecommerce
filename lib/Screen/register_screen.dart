@@ -1,17 +1,19 @@
-import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  TextEditingController rePasswordController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -30,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
                     child: Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
@@ -92,6 +94,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       isDense: true,
                       prefixIcon: Icon(Icons.lock),
                       hintText: 'Enter password',
+                      hintStyle:
+                          TextStyle(fontSize: 15, color: Colors.grey[400])),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Re-Password',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1),
+                ),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty || value.length < 6)
+                      return 'Please enter your password';
+                    if (value != passwordController)
+                      return 'Password does not match';
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      isDense: true,
+                      prefixIcon: Icon(Icons.lock),
+                      hintText: 'Enter re-password',
                       hintStyle:
                           TextStyle(fontSize: 15, color: Colors.grey[400])),
                 ),
