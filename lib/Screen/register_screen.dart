@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+      ),
       body: Form(
         key: _formKey,
         child: Center(
@@ -108,13 +114,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       letterSpacing: 1),
                 ),
                 TextFormField(
-                  controller: passwordController,
+                  controller: rePasswordController,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 6)
                       return 'Please enter your password';
-                    if (value != passwordController)
-                      return 'Password does not match';
+                    // if (value != passwordController.text)
+                    //   return 'Password does not match';
                     return null;
                   },
                   decoration: InputDecoration(
@@ -124,13 +130,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintStyle:
                           TextStyle(fontSize: 15, color: Colors.grey[400])),
                 ),
-                SizedBox(height: 10),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(fontStyle: FontStyle.italic),
-                    )),
                 SizedBox(
                   height: 40,
                 ),
@@ -149,14 +148,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onPressed: () {
                           setState(() {
                             if (_formKey.currentState.validate()) {
-                              context.read<AuthenticationServices>().signIn(
+                              context.read<AuthenticationServices>().signUp(
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim());
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()));
                             }
                           });
                         },
                         child: Text(
-                          'Login',
+                          'Register',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

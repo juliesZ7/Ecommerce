@@ -21,10 +21,11 @@ class _WelcomePageState extends State<WelcomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                color: Colors.red,
-                height: 100,
-                width: 100,
-                child: Text('Logo'),
+                height: 200,
+                width: 200,
+                child: Image(
+                    image: AssetImage(
+                        'assets/graphics/Mod_Yourself_Logo_Transparent.jpg')),
               ),
               SizedBox(
                 height: 30,
