@@ -2,6 +2,7 @@ import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import '../product_info.dart';
+import 'package:ecommerce/get_api.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -68,11 +69,11 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             setState(() {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProductScreen(
-                                          index: index,
-                                        )));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductScreen(
+                                            index: index,
+                                          )));
                             });
                           },
                           child: Container(
