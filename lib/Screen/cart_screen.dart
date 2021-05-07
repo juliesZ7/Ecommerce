@@ -2,15 +2,23 @@ import 'package:ecommerce/product_info.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
+  final List<ProductInfoModel> cart;
+  final Function(int) callBack;
+  CartScreen({this.cart, this.callBack});
   static String routeName = '/cart';
   @override
-  _CartScreenState createState() => _CartScreenState();
+  _CartScreenState createState() =>
+      _CartScreenState(cart: cart, callBack: callBack);
 }
 
 class _CartScreenState extends State<CartScreen> {
+  final List<ProductInfoModel> cart;
+  final Function(int) callBack;
+  _CartScreenState({this.cart, this.callBack});
   ProductInfoModel productInfo = ProductInfoModel();
   @override
   Widget build(BuildContext context) {
+    print("carScreen: $cart");
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -80,7 +88,7 @@ class _CartScreenState extends State<CartScreen> {
                                     TextButton(
                                       onPressed: () {
                                         setState(() {
-                                          productInfo.removeItems(cart, index);
+                                          callBack(index);
                                         });
                                       },
                                       child: Icon(

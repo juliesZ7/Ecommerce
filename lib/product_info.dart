@@ -37,5 +37,3 @@ List<ProductInfoModel> product = [
       price: '\$40',
       description: 'Description'),
 ];
-
-List<ProductInfoModel> cart = [];

@@ -1,19 +1,25 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
-import '../product_info.dart';
+import 'package:ecommerce/product_info.dart';
 
 class ProductScreen extends StatefulWidget {
+  final List<ProductInfoModel> cart;
   final index;
-  ProductScreen({this.index});
+  final Function(int) callBack;
+  ProductScreen({this.index, this.cart, this.callBack});
   @override
-  _ProductScreenState createState() => _ProductScreenState(index: index);
+  _ProductScreenState createState() =>
+      _ProductScreenState(index: index, cart: cart, callBack: callBack);
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  final List<ProductInfoModel> cart;
   final index;
-  _ProductScreenState({this.index});
+  final Function(int) callBack;
+  _ProductScreenState({this.index, this.cart, this.callBack});
   @override
   Widget build(BuildContext context) {
+    print("productScreen: $cart");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -32,7 +38,10 @@ class _ProductScreenState extends State<ProductScreen> {
               IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CartScreen()));
+                        MaterialPageRoute(builder: (context) {
+                      print("homePageScreen 1: $cart");
+                      return CartScreen(cart: cart);
+                    }));
                   },
                   icon: Icon(
                     Icons.shopping_cart,
@@ -102,7 +111,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       style: ButtonStyle(),
                       onPressed: () {
                         setState(() {
-                          cart.add(product[index]);
+                          callBack(index);
                         });
                       },
                       child: Text(

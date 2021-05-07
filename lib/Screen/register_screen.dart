@@ -2,6 +2,7 @@ import 'package:ecommerce/Screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
+import 'new_home_page.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -154,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                                      builder: (context) => NewHomePage()));
                             }
                           });
                         },

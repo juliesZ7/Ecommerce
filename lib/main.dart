@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: AuthenticationWrapper()));
+            debugShowCheckedModeBanner: false, home: NewHomePage()));
   }
 }
 
@@ -43,7 +43,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return HomePage();
+      return NewHomePage();
     }
     return WelcomePage();
   }
