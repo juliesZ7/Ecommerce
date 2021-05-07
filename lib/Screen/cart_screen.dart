@@ -3,22 +3,23 @@ import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;
-  final Function(int) callBack;
-  CartScreen({this.cart, this.callBack});
+  final index;
+  final Function(int) removeItemCartCB;
+  CartScreen({this.cart, this.index, this.removeItemCartCB});
   static String routeName = '/cart';
   @override
-  _CartScreenState createState() =>
-      _CartScreenState(cart: cart, callBack: callBack);
+  _CartScreenState createState() => _CartScreenState(
+      cart: cart, index: index, removeItemCartCB: removeItemCartCB);
 }
 
 class _CartScreenState extends State<CartScreen> {
   final List<ProductInfoModel> cart;
-  final Function(int) callBack;
-  _CartScreenState({this.cart, this.callBack});
+  final index;
+  final Function(int) removeItemCartCB;
+  _CartScreenState({this.cart, this.index, this.removeItemCartCB});
   ProductInfoModel productInfo = ProductInfoModel();
   @override
   Widget build(BuildContext context) {
-    print("carScreen: $cart");
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -88,7 +89,7 @@ class _CartScreenState extends State<CartScreen> {
                                     TextButton(
                                       onPressed: () {
                                         setState(() {
-                                          callBack(index);
+                                          removeItemCartCB(index);
                                         });
                                       },
                                       child: Icon(
@@ -124,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                             onPressed: () {
                               setState(() {
-                                print('press');
+                                removeItemCartCB(index);
                               });
                             },
                             child: Center(

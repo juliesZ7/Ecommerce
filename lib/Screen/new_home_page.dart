@@ -17,12 +17,6 @@ class _NewHomePageState extends State<NewHomePage> {
     });
   }
 
-  removeCart(int index) {
-    setState(() {
-      cart.remove(index);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +42,6 @@ class _NewHomePageState extends State<NewHomePage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      print("homePageScreen cart: $cart");
                       return CartScreen(cart: cart);
                     }));
                   },
@@ -85,9 +78,8 @@ class _NewHomePageState extends State<NewHomePage> {
                           setState(() {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              print("homePageScreen 2: $cart");
                               return ProductScreen(
-                                callBack: addCart,
+                                addItemCartCB: addCart,
                                 cart: cart,
                                 index: index,
                               );

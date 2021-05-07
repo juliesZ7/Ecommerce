@@ -1,25 +1,31 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/product_info.dart';
+import 'new_home_page.dart';
 
 class ProductScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;
   final index;
-  final Function(int) callBack;
-  ProductScreen({this.index, this.cart, this.callBack});
+  final Function(int) addItemCartCB;
+  ProductScreen({this.index, this.cart, this.addItemCartCB});
   @override
-  _ProductScreenState createState() =>
-      _ProductScreenState(index: index, cart: cart, callBack: callBack);
+  _ProductScreenState createState() => _ProductScreenState(
+      index: index, cart: cart, addItemCartCB: addItemCartCB);
 }
 
 class _ProductScreenState extends State<ProductScreen> {
   final List<ProductInfoModel> cart;
   final index;
-  final Function(int) callBack;
-  _ProductScreenState({this.index, this.cart, this.callBack});
+  final Function(int) addItemCartCB;
+  _ProductScreenState({this.index, this.cart, this.addItemCartCB});
+  removeCart(int index) {
+    setState(() {
+      cart.remove(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print("productScreen: $cart");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -39,8 +45,11 @@ class _ProductScreenState extends State<ProductScreen> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      print("homePageScreen 1: $cart");
-                      return CartScreen(cart: cart);
+                      return CartScreen(
+                        cart: cart,
+                        index: index,
+                        removeItemCartCB: removeCart,
+                      );
                     }));
                   },
                   icon: Icon(
@@ -111,7 +120,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       style: ButtonStyle(),
                       onPressed: () {
                         setState(() {
-                          callBack(index);
+                          addItemCartCB(index);
                         });
                       },
                       child: Text(
