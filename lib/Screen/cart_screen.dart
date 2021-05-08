@@ -4,19 +4,25 @@ import 'package:flutter/material.dart';
 class CartScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;
   final index;
+  final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  CartScreen({this.cart, this.index, this.removeItemCartCB});
-  static String routeName = '/cart';
+  CartScreen(
+      {this.cart, this.index, this.addItemCartCB, this.removeItemCartCB});
   @override
   _CartScreenState createState() => _CartScreenState(
-      cart: cart, index: index, removeItemCartCB: removeItemCartCB);
+      cart: cart,
+      index: index,
+      addItemCartCB: addItemCartCB,
+      removeItemCartCB: removeItemCartCB);
 }
 
 class _CartScreenState extends State<CartScreen> {
   final List<ProductInfoModel> cart;
   final index;
+  final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  _CartScreenState({this.cart, this.index, this.removeItemCartCB});
+  _CartScreenState(
+      {this.cart, this.index, this.addItemCartCB, this.removeItemCartCB});
   ProductInfoModel productInfo = ProductInfoModel();
   @override
   Widget build(BuildContext context) {

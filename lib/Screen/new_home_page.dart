@@ -2,7 +2,7 @@ import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import '../product_info.dart';
-import 'package:ecommerce/get_api.dart';
+// import 'package:ecommerce/get_api.dart';
 
 class NewHomePage extends StatefulWidget {
   @override
@@ -14,6 +14,12 @@ class _NewHomePageState extends State<NewHomePage> {
   addCart(int index) {
     setState(() {
       cart.add(product[index]);
+    });
+  }
+
+  removeCart(int index) {
+    setState(() {
+      cart.remove(cart[index]);
     });
   }
 
@@ -42,7 +48,10 @@ class _NewHomePageState extends State<NewHomePage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return CartScreen(cart: cart);
+                      return CartScreen(
+                        cart: cart,
+                        removeItemCartCB: removeCart,
+                      );
                     }));
                   },
                   icon: Icon(

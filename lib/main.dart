@@ -1,15 +1,8 @@
 import 'package:ecommerce/Authentication_Service.dart';
-import 'package:ecommerce/Screen/home_page.dart';
-import 'package:ecommerce/Screen/login_screen.dart';
 import 'package:ecommerce/Screen/new_home_page.dart';
-import 'package:ecommerce/product_info.dart';
-import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
-import 'product_info.dart';
-import 'Screen/product_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -33,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: NewHomePage()));
+            debugShowCheckedModeBanner: false, home: AuthenticationWrapper()));
   }
 }
 

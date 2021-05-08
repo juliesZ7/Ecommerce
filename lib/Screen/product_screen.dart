@@ -1,7 +1,7 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/product_info.dart';
-import 'new_home_page.dart';
+import '../product_info.dart';
 
 class ProductScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;
@@ -20,7 +20,7 @@ class _ProductScreenState extends State<ProductScreen> {
   _ProductScreenState({this.index, this.cart, this.addItemCartCB});
   removeCart(int index) {
     setState(() {
-      cart.remove(index);
+      cart.remove(cart[index]);
     });
   }
 
@@ -43,14 +43,16 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return CartScreen(
-                        cart: cart,
-                        index: index,
-                        removeItemCartCB: removeCart,
-                      );
-                    }));
+                    setState(() {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return CartScreen(
+                          cart: cart,
+                          index: index,
+                          removeItemCartCB: removeCart,
+                        );
+                      }));
+                    });
                   },
                   icon: Icon(
                     Icons.shopping_cart,

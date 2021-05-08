@@ -6,9 +6,6 @@ class ProductInfoModel {
   final String description;
   ProductInfoModel(
       {this.id, this.image, this.name, this.price, this.description});
-  void removeItems(List product, int index) {
-    product.removeAt(index);
-  }
 }
 
 List<ProductInfoModel> product = [
