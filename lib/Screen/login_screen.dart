@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screen/new_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,6 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               context.read<AuthenticationServices>().signIn(
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim());
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NewHomePage()));
                             }
                           });
                         },
