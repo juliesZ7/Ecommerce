@@ -1,7 +1,7 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
-import '../product_info.dart';
+import '../Model/product_info.dart';
 // import 'package:ecommerce/get_api.dart';
 
 class NewHomePage extends StatefulWidget {

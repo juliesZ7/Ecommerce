@@ -1,7 +1,7 @@
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/product_info.dart';
-import '../product_info.dart';
+import 'package:ecommerce/Model/product_info.dart';
+import '../Model/product_info.dart';
 
 class ProductScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;

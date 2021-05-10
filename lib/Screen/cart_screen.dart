@@ -1,4 +1,4 @@
-import 'package:ecommerce/product_info.dart';
+import 'package:ecommerce/Model/product_info.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
