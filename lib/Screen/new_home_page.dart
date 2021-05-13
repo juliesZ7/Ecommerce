@@ -51,14 +51,13 @@ class _NewHomePageState extends State<NewHomePage> {
               ),
               IconButton(
                   onPressed: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return CartScreen(
-                    //     cart: cart,
-                    //     removeItemCartCB: removeCart,
-                    //   );
-                    // }));
-                    NewCartScreen();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return NewCartScreen(
+                        cart: cart,
+                        removeItemCartCB: removeCart,
+                      );
+                    }));
                   },
                   icon: Icon(
                     Icons.shopping_cart,

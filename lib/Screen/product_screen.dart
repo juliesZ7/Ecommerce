@@ -47,7 +47,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     setState(() {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return CartScreen(
+                        return NewCartScreen(
                           cart: cart,
                           index: index,
                           removeItemCartCB: removeCart,
