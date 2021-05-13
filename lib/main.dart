@@ -1,5 +1,6 @@
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:ecommerce/Screen/new_home_page.dart';
+import 'package:ecommerce/Screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: AuthenticationWrapper()));
+            debugShowCheckedModeBanner: false, home: NewHomePage()));
   }
 }
 

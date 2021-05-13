@@ -24,6 +24,7 @@ class _CartScreenState extends State<CartScreen> {
   _CartScreenState(
       {this.cart, this.index, this.addItemCartCB, this.removeItemCartCB});
   ProductInfoModel productInfo = ProductInfoModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
