@@ -1,13 +1,16 @@
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginResponseModel {
   String token;
-  String error;
-  LoginResponseModel({this.token, this.error});
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
+  LoginResponseModel({
+    this.token,
+  });
+  factory LoginResponseModel.fromJson(Map<String, String> json) {
     return LoginResponseModel(
-        token: json['token'] != null ? json['token'] : '',
-        error: json['error'] != null ? json['error'] : '');
+        token: json['Auth-Token'] != null
+            ? json['Auth-Token']
+            : 'Auth-Token = null');
   }
 }
 
@@ -16,7 +19,7 @@ class LoginRequestModel {
   String password;
   LoginRequestModel({this.email, this.password});
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {email: email.trim(), password: password.trim()};
+    Map<String, dynamic> map = {'email': email, 'password': password};
     return map;
   }
 }

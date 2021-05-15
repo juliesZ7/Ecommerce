@@ -3,6 +3,7 @@ import 'package:ecommerce/Screen/new_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce/Service/api_service.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,7 +14,15 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  LoginRequestModel loginRequestModel;
+  LoginRequestModel loginRequestModel = new LoginRequestModel();
+  LoginResponseModel loginResponseModel = new LoginResponseModel();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loginRequestModel = new LoginRequestModel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: emailController,
-                  onSaved: (value) => loginRequestModel.email = value.trim(),
+                  onSaved: (value) {
+                    loginRequestModel.email = value.trim();
+                  },
                   validator: (value) {
-                    if (value == null ||
-                        value.isEmpty ||
-                        !value.contains('gmail.com'))
+                    if (value == null || value.isEmpty || !value.contains('@'))
                       return 'Please enter your email';
                     return null;
                   },
@@ -90,7 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: passwordController,
-                  onSaved: (value) => loginRequestModel.password = value.trim(),
+                  onSaved: (value) {
+                    loginRequestModel.password = value.trim();
+                  },
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 6)
@@ -129,12 +140,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           setState(() {
                             if (_formKey.currentState.validate()) {
-                              print(loginRequestModel.toJson());
+                              _formKey.currentState.save();
+                              print('${loginRequestModel.email}');
+                              print('${loginRequestModel.password}');
+                              loginRequestModel.toJson();
+                              APIService apiService = new APIService();
+                              // apiService.login(loginRequestModel).then((value) {
+                              //   setState(() {
+                              //     loginResponseModel = value;
+                              //     print(
+                              //         'loginResponseModel: ${loginResponseModel}');
+                              //     print('value.token: ${value.token}');
+                              //   });
+                              // });
+                              // print(
+                              //     'tokenLoginScreen: ${loginResponseModel.token}');
+                              apiService.login(loginRequestModel);
+                              print(
+                                  'tokenLoginScreen: ${loginResponseModel.token}');
                             }
                           });
                         },
                         child: Text(
-                          'Login',
+                          loginResponseModel.token == null
+                              ? 'Login'
+                              : loginResponseModel.token,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
