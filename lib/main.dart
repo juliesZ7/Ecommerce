@@ -1,4 +1,5 @@
 import 'package:ecommerce/Authentication_Service.dart';
+import 'package:ecommerce/Screen/login_screen.dart';
 import 'package:ecommerce/Screen/new_home_page.dart';
 import 'package:ecommerce/Screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: WelcomePage()));
+            debugShowCheckedModeBanner: false, home: LoginScreen()));
   }
 }
 

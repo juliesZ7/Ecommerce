@@ -1,3 +1,4 @@
+import 'package:ecommerce/Model/login_model.dart';
 import 'package:ecommerce/Screen/new_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
@@ -12,6 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  LoginRequestModel loginRequestModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: emailController,
+                  onSaved: (value) => loginRequestModel.email = value.trim(),
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
@@ -87,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: passwordController,
+                  onSaved: (value) => loginRequestModel.password = value.trim(),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 6)
@@ -125,13 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           setState(() {
                             if (_formKey.currentState.validate()) {
-                              context.read<AuthenticationServices>().signIn(
-                                  email: emailController.text.trim(),
-                                  password: passwordController.text.trim());
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => NewHomePage()));
+                              print(loginRequestModel.toJson());
                             }
                           });
                         },
