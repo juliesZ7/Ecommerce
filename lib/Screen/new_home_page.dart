@@ -29,6 +29,14 @@ class _NewHomePageState extends State<NewHomePage> {
     });
   }
 
+  int bottomNavigationBarItemIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // final bottomNavigationBarItemIndex = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +76,50 @@ class _NewHomePageState extends State<NewHomePage> {
           ),
         ],
       ),
+<<<<<<< Updated upstream
       bottomNavigationBar: BottomNavigationBar(items: [BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home')]),
+=======
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: bottomNavigationBarItemIndex,
+        unselectedItemColor: Colors.grey[500],
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(
+              Icons.home,
+              color: (bottomNavigationBarItemIndex == 0)
+                  ? Colors.lightBlueAccent
+                  : Colors.grey[500], 
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.search,
+                color: (bottomNavigationBarItemIndex == 0)
+                    ? Colors.lightBlueAccent
+                    : Colors.grey[500]),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+              backgroundColor: Colors.lightBlueAccent,
+              icon: Icon(Icons.person_outline_rounded,
+                  color: (bottomNavigationBarItemIndex == 0)
+                      ? Colors.lightBlueAccent
+                      : Colors.grey[500]),
+              label: 'Person'),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.settings,
+                color: (bottomNavigationBarItemIndex == 0)
+                    ? Colors.lightBlueAccent
+                    : Colors.grey[500]),
+            label: 'Setting',
+          )
+        ],
+      ),
+>>>>>>> Stashed changes
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -83,66 +134,63 @@ class _NewHomePageState extends State<NewHomePage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 500,
-                  child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return TextButton(
-                          onPressed: () {
-                            setState(() {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ProductScreen(
-                                  addItemCartCB: addCart,
-                                  cart: cart,
-                                  index: index,
-                                );
-                              }));
-                            });
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: 150,
-                              height: 500,
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  Container(
-                                      width: 100,
-                                      child: Image(
-                                          image: AssetImage(
-                                              '${product[index].image}'))),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('${product[index].name}',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w400)),
-                                      Text('${product[index].price}',
-                                          style: TextStyle(
-                                              color: Colors.redAccent,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600)),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                        );
-                      },
-                      separatorBuilder: (context, index) => SizedBox(
-                            width: 10,
-                          ),
-                      itemCount: product.length),
-                ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return TextButton(
+                        onPressed: () {
+                          setState(() {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ProductScreen(
+                                addItemCartCB: addCart,
+                                cart: cart,
+                                index: index,
+                              );
+                            }));
+                          });
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              // color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: 150,
+                            height: 200,
+                            padding: EdgeInsets.all(8),
+                            child: Column(
+                              children: [
+                                Container(
+                                    width: 100,
+                                    child: Image(
+                                        image: AssetImage(
+                                            '${product[index].image}'))),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('${product[index].name}',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400)),
+                                    Text('${product[index].price}',
+                                        style: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600)),
+                                  ],
+                                ),
+                              ],
+                            )),
+                      );
+                    },
+                    separatorBuilder: (context, index) => SizedBox(
+                          width: 10,
+                        ),
+                    itemCount: product.length),
               ),
             ],
           ),
