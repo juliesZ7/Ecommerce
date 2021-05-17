@@ -9,22 +9,24 @@ class ProductScreen extends StatefulWidget {
   final List<ProductInfoModel> cart;
   final index;
   final Function(int) addItemCartCB;
-  ProductScreen({this.index, this.cart, this.addItemCartCB});
+  final Function(int) removeItemCartCB;
+  ProductScreen(
+      {this.index, this.cart, this.addItemCartCB, this.removeItemCartCB});
   @override
   _ProductScreenState createState() => _ProductScreenState(
-      index: index, cart: cart, addItemCartCB: addItemCartCB);
+      index: index,
+      cart: cart,
+      addItemCartCB: addItemCartCB,
+      removeItemCartCB: removeItemCartCB);
 }
 
 class _ProductScreenState extends State<ProductScreen> {
   final List<ProductInfoModel> cart;
   final index;
   final Function(int) addItemCartCB;
-  _ProductScreenState({this.index, this.cart, this.addItemCartCB});
-  removeCart(int index) {
-    setState(() {
-      cart.remove(cart[index]);
-    });
-  }
+  final Function(int) removeItemCartCB;
+  _ProductScreenState(
+      {this.index, this.cart, this.addItemCartCB, this.removeItemCartCB});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           MaterialPageRoute(
                               builder: (context) => CartTab(
                                   cart: cart,
-                                  removeItemCartCB: removeCart(index))));
+                                  removeItemCartCB: removeItemCartCB)));
                     });
                   },
                   icon: Icon(

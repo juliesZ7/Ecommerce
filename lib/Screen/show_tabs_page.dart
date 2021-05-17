@@ -9,22 +9,21 @@ import '../Model/product_info.dart';
 
 class ShowTabsPage extends StatefulWidget {
   final index;
-  ShowTabsPage({this.index});
+  final List<ProductInfoModel> cart;
+  final Function(int) removeItemCartCB;
+  ShowTabsPage({this.index, this.cart, this.removeItemCartCB});
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState(index: index);
+  _ShowTabsPageState createState() => _ShowTabsPageState(
+      index: index, cart: cart, removeItemCartCB: removeItemCartCB);
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
   int bottomNavigationBarItemIndex;
   final index;
-  List<ProductInfoModel> cart = [];
-  _ShowTabsPageState({this.index});
+  final List<ProductInfoModel> cart;
+  final Function(int) removeItemCartCB;
+  _ShowTabsPageState({this.index, this.cart, this.removeItemCartCB});
   final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
-  removeCart(int index) {
-    setState(() {
-      cart.remove(cart[index]);
-    });
-  }
 
   @override
   void initState() {
@@ -61,7 +60,7 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
                           MaterialPageRoute(
                               builder: (context) => CartTab(
                                     cart: cart,
-                                    removeItemCartCB: removeCart(index),
+                                    removeItemCartCB: removeItemCartCB,
                                   )));
                     });
                   },

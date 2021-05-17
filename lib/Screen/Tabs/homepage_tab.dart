@@ -1,5 +1,6 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
+import 'package:ecommerce/Screen/show_tabs_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatefulWidget {
@@ -30,6 +31,9 @@ class _HomePageTabState extends State<HomePageTab> {
 
   @override
   Widget build(BuildContext context) {
+    ShowTabsPage showTabsPage = new ShowTabsPage(
+      cart: cart,
+    );
     return SafeArea(
       child: Container(
         color: Colors.white,

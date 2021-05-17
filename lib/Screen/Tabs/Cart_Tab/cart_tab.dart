@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 
 class CartTab extends StatefulWidget {
   final List<ProductInfoModel> cart;
-  final Function(int) addItemCartCB;
+  final index;
   final Function(int) removeItemCartCB;
-  CartTab({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  CartTab({this.cart, this.removeItemCartCB, this.index});
   @override
   _CartTabState createState() => _CartTabState(
-      cart: cart,
-      addItemCartCB: addItemCartCB,
-      removeItemCartCB: removeItemCartCB);
+      cart: cart, removeItemCartCB: removeItemCartCB, index: index);
 }
 
 class _CartTabState extends State<CartTab> {
+  final index;
   final List<ProductInfoModel> cart;
-  final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  _CartTabState({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  _CartTabState({this.cart, this.removeItemCartCB, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +89,7 @@ class _CartTabState extends State<CartTab> {
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          setState(() {
-                                            removeItemCartCB(index);
-                                          });
+                                          removeItemCartCB(index);
                                         },
                                         child: Icon(
                                           Icons.delete,
