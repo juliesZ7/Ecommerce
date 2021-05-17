@@ -1,6 +1,6 @@
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:ecommerce/Screen/login_screen.dart';
-import 'package:ecommerce/Screen/new_home_page.dart';
+import 'package:ecommerce/Screen/show_tabs_page.dart';
 import 'package:ecommerce/Screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: NewHomePage()));
+            debugShowCheckedModeBanner: false, home: ShowTabsPage()));
   }
 }
 
@@ -38,7 +38,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return NewHomePage();
+      return ShowTabsPage();
     }
     return WelcomePage();
   }
