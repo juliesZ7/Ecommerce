@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/Service/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,7 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
   LoginRequestModel loginRequestModel = new LoginRequestModel();
-  LoginResponseModel loginResponseModel = new LoginResponseModel();
+  APIService apiService = new APIService();
+  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   @override
   void initState() {
     // TODO: implement initState
@@ -137,34 +139,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           colors: [Colors.blueAccent, Colors.greenAccent]),
                     ),
                     child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            if (_formKey.currentState.validate()) {
-                              _formKey.currentState.save();
-                              print('${loginRequestModel.email}');
-                              print('${loginRequestModel.password}');
-                              loginRequestModel.toJson();
-                              APIService apiService = new APIService();
-                              // apiService.login(loginRequestModel).then((value) {
-                              //   setState(() {
-                              //     loginResponseModel = value;
-                              //     print(
-                              //         'loginResponseModel: ${loginResponseModel}');
-                              //     print('value.token: ${value.token}');
-                              //   });
-                              // });
-                              // print(
-                              //     'tokenLoginScreen: ${loginResponseModel.token}');
-                              apiService.login(loginRequestModel);
-                              print(
-                                  'tokenLoginScreen: ${loginResponseModel.token}');
-                            }
-                          });
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                            loginRequestModel.toJson();
+                            final data =
+                                await apiService.login(loginRequestModel);
+                            final SharedPreferences sharedPreferences =
+                                await prefs;
+                            sharedPreferences.setString(
+                                'authtoken', data.token);
+                                print(sharedPreferences.getString('authtoken'));
+                          }
                         },
                         child: Text(
-                          loginResponseModel.token == null
-                              ? 'Login'
-                              : loginResponseModel.token,
+                          'Login',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

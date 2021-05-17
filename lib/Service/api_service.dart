@@ -4,15 +4,13 @@ import 'dart:convert';
 
 class APIService {
   Future<LoginResponseModel> login(LoginRequestModel requestModel) async {
-    Uri url = Uri.tryParse('https://cuongdshop.herokuapp.com/api/auth/login');
+    Uri url = Uri.parse('https://cuongdshop.herokuapp.com/api/auth/login');
     final body = requestModel.toJson();
-    // print('body: $body');
-    final response = await http.post(url, body: body);
-    // Map<String, String> headers;
-    // final response = await http.get(url, headers: headers);
-    // print('Headers: $headers');
-    // print('${response.statusCode}');
-    if (response.statusCode == 200 || response.statusCode == 400) {
+    final response = await http.post(
+      url,
+      body: body,
+    );
+    if (response.statusCode == 200) {
       return LoginResponseModel.fromJson(response.headers);
     } else {
       throw Exception('Failed to load data');

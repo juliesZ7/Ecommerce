@@ -6,11 +6,8 @@ class LoginResponseModel {
   LoginResponseModel({
     this.token,
   });
-  factory LoginResponseModel.fromJson(Map<String, String> json) {
-    return LoginResponseModel(
-        token: json['Auth-Token'] != null
-            ? json['Auth-Token']
-            : 'Auth-Token = null');
+  factory LoginResponseModel.fromJson(dynamic json) {
+    return LoginResponseModel(token: json['x-auth-token'] ?? '');
   }
 }
 
