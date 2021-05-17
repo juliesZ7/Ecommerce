@@ -1,6 +1,8 @@
 import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:ecommerce/Screen/Tabs/homepage_tab.dart';
+import 'package:ecommerce/Screen/Tabs/profile_tab.dart';
 import 'package:ecommerce/Screen/Tabs/search_tab.dart';
+import 'package:ecommerce/Screen/Tabs/setting_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../Model/product_info.dart';
@@ -13,30 +15,21 @@ class ShowTabsPage extends StatefulWidget {
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
-  List<ProductInfoModel> cart = [];
   int bottomNavigationBarItemIndex;
   final index;
+  List<ProductInfoModel> cart = [];
   _ShowTabsPageState({this.index});
-  final tabs = [
-    HomePageTab(),
-    SearchTab(),
-  ];
-  @override
-  void initState() {
-    super.initState();
-    bottomNavigationBarItemIndex = 0;
-  }
-
-  addCart(int index) {
-    setState(() {
-      cart.add(product[index]);
-    });
-  }
-
+  final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
   removeCart(int index) {
     setState(() {
       cart.remove(cart[index]);
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    bottomNavigationBarItemIndex = 0;
   }
 
   @override
@@ -62,15 +55,15 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
               ),
               IconButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CartTab(
-                                  index: index,
-                                  cart: cart,
-                                  addItemCartCB: addCart(index),
-                                  removeItemCartCB: removeCart(index),
-                                )));
+                    setState(() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CartTab(
+                                    cart: cart,
+                                    removeItemCartCB: removeCart(index),
+                                  )));
+                    });
                   },
                   icon: Icon(
                     Icons.shopping_cart,

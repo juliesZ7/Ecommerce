@@ -1,27 +1,32 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
-import 'package:ecommerce/Screen/show_tabs_page.dart';
 import 'package:flutter/material.dart';
 
-import '../new_cart_screen.dart';
-
 class HomePageTab extends StatefulWidget {
-  final List<ProductInfoModel> cart;
   final index;
-  final Function(int) addCart;
-  HomePageTab({this.index, this.cart, this.addCart});
+  HomePageTab({this.index});
   @override
-  _HomePageTabState createState() =>
-      _HomePageTabState(index: index, cart: cart, addCart: addCart);
+  _HomePageTabState createState() => _HomePageTabState(index: index);
 }
 
 class _HomePageTabState extends State<HomePageTab> {
-  ShowTabsPage showTabsPage = new ShowTabsPage();
-  final List<ProductInfoModel> cart;
+  List<ProductInfoModel> cart = [];
   final index;
-  final Function(int) addCart;
   int bottomNavigationBarItemIndex = 0;
-  _HomePageTabState({this.index, this.cart, this.addCart});
+  _HomePageTabState({
+    this.index,
+  });
+  addCart(int index) {
+    setState(() {
+      cart.add(product[index]);
+    });
+  }
+
+  removeCart(int index) {
+    setState(() {
+      cart.remove(cart[index]);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +56,8 @@ class _HomePageTabState extends State<HomePageTab> {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return ProductScreen(
-                              cart: cart,
                               index: index,
+                              cart: cart,
                               addItemCartCB: addCart,
                             );
                           }));
@@ -60,7 +65,6 @@ class _HomePageTabState extends State<HomePageTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            // color: Colors.blue,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           width: 150,

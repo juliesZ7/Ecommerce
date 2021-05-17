@@ -50,7 +50,6 @@ class _ProductScreenState extends State<ProductScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => CartTab(
-                                  index: index,
                                   cart: cart,
                                   removeItemCartCB: removeCart(index))));
                     });

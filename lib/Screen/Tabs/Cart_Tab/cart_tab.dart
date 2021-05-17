@@ -3,26 +3,21 @@ import 'package:flutter/material.dart';
 
 class CartTab extends StatefulWidget {
   final List<ProductInfoModel> cart;
-  final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  CartTab({this.cart, this.index, this.addItemCartCB, this.removeItemCartCB});
+  CartTab({this.cart, this.addItemCartCB, this.removeItemCartCB});
   @override
   _CartTabState createState() => _CartTabState(
       cart: cart,
-      index: index,
       addItemCartCB: addItemCartCB,
       removeItemCartCB: removeItemCartCB);
 }
 
 class _CartTabState extends State<CartTab> {
   final List<ProductInfoModel> cart;
-  final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  _CartTabState(
-      {this.cart, this.index, this.addItemCartCB, this.removeItemCartCB});
-  ProductInfoModel productInfo = ProductInfoModel();
+  _CartTabState({this.cart, this.addItemCartCB, this.removeItemCartCB});
 
   @override
   Widget build(BuildContext context) {
