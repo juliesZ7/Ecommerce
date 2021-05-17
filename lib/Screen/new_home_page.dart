@@ -68,6 +68,7 @@ class _NewHomePageState extends State<NewHomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items: [BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home')]),
       body: SafeArea(
         child: Container(
           color: Colors.white,
