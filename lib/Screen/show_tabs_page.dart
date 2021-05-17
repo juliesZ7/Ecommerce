@@ -13,8 +13,7 @@ class ShowTabsPage extends StatefulWidget {
   final Function(int) removeItemCartCB;
   ShowTabsPage({this.index, this.cart, this.removeItemCartCB});
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState(
-      index: index, cart: cart, removeItemCartCB: removeItemCartCB);
+  _ShowTabsPageState createState() => _ShowTabsPageState(cart: cart);
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
