@@ -52,7 +52,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               builder: (context) => CartTab(
                                   index: index,
                                   cart: cart,
-                                  addItemCartCB: removeCart(index))));
+                                  removeItemCartCB: removeCart(index))));
                     });
                   },
                   icon: Icon(

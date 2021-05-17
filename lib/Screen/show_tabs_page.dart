@@ -6,29 +6,25 @@ import 'package:flutter/rendering.dart';
 import '../Model/product_info.dart';
 
 class ShowTabsPage extends StatefulWidget {
-  List<ProductInfoModel> cart = [];
-  int index = 0;
+  final index;
+  ShowTabsPage({this.index});
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState();
+  _ShowTabsPageState createState() => _ShowTabsPageState(index: index);
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
   List<ProductInfoModel> cart = [];
   int bottomNavigationBarItemIndex;
   final index;
-  _ShowTabsPageState({this.cart, this.index});
-  var tabs = [];
+  _ShowTabsPageState({this.index});
+  final tabs = [
+    HomePageTab(),
+    SearchTab(),
+  ];
   @override
   void initState() {
     super.initState();
     bottomNavigationBarItemIndex = 0;
-    final tabs = [
-      HomePageTab(
-        cart: cart,
-        index: index,
-      ),
-      SearchTab(),
-    ];
   }
 
   addCart(int index) {
