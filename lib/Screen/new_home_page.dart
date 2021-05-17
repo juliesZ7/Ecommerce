@@ -76,9 +76,6 @@ class _NewHomePageState extends State<NewHomePage> {
           ),
         ],
       ),
-<<<<<<< Updated upstream
-      bottomNavigationBar: BottomNavigationBar(items: [BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home')]),
-=======
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavigationBarItemIndex,
         unselectedItemColor: Colors.grey[500],
@@ -119,7 +116,6 @@ class _NewHomePageState extends State<NewHomePage> {
           )
         ],
       ),
->>>>>>> Stashed changes
       body: SafeArea(
         child: Container(
           color: Colors.white,
