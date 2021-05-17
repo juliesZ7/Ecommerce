@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:ecommerce/Screen/cart_screen.dart';
 import 'package:ecommerce/Screen/new_cart_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +46,13 @@ class _ProductScreenState extends State<ProductScreen> {
               IconButton(
                   onPressed: () {
                     setState(() {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return NewCartScreen(
-                          cart: cart,
-                          index: index,
-                          removeItemCartCB: removeCart,
-                        );
-                      }));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CartTab(
+                                  index: index,
+                                  cart: cart,
+                                  addItemCartCB: removeCart(index))));
                     });
                   },
                   icon: Icon(

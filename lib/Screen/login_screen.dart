@@ -1,5 +1,4 @@
 import 'package:ecommerce/Model/login_model.dart';
-import 'package:ecommerce/Screen/show_tabs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -141,8 +140,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
+                              print('${loginRequestModel.email}');
+                              print('${loginRequestModel.password}');
                               loginRequestModel.toJson();
                               APIService apiService = new APIService();
+                              // apiService.login(loginRequestModel).then((value) {
+                              //   setState(() {
+                              //     loginResponseModel = value;
+                              //     print(
+                              //         'loginResponseModel: ${loginResponseModel}');
+                              //     print('value.token: ${value.token}');
+                              //   });
+                              // });
+                              // print(
+                              //     'tokenLoginScreen: ${loginResponseModel.token}');
                               apiService.login(loginRequestModel);
                               print(
                                   'tokenLoginScreen: ${loginResponseModel.token}');

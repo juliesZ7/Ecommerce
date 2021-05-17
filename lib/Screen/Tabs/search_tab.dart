@@ -8,11 +8,9 @@ class SearchTab extends StatefulWidget {
 class _SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Text('Search Tab'),
-        ),
+    return SafeArea(
+      child: Center(
+        child: Text('Search Tab'),
       ),
     );
   }
