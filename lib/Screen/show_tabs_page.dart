@@ -8,20 +8,20 @@ import 'package:flutter/rendering.dart';
 import '../Model/product_info.dart';
 
 class ShowTabsPage extends StatefulWidget {
-  final index;
-  final List<ProductInfoModel> cart;
   final Function(int) removeItemCartCB;
-  ShowTabsPage({this.index, this.cart, this.removeItemCartCB});
+  ShowTabsPage({this.removeItemCartCB});
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState(cart: cart);
+  _ShowTabsPageState createState() => _ShowTabsPageState(
+        removeItemCartCB: removeItemCartCB,
+      );
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
+  HomePageTab homePageTab = new HomePageTab();
+
   int bottomNavigationBarItemIndex;
-  final index;
-  final List<ProductInfoModel> cart;
   final Function(int) removeItemCartCB;
-  _ShowTabsPageState({this.index, this.cart, this.removeItemCartCB});
+  _ShowTabsPageState({this.removeItemCartCB});
   final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
 
   @override
@@ -32,6 +32,7 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<ProductInfoModel> cart = homePageTab.cart;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -59,7 +60,6 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
                           MaterialPageRoute(
                               builder: (context) => CartTab(
                                     cart: cart,
-                                    removeItemCartCB: removeItemCartCB,
                                   )));
                     });
                   },

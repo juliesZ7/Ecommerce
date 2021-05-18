@@ -4,19 +4,19 @@ import 'package:ecommerce/Screen/show_tabs_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatefulWidget {
+  List<ProductInfoModel> cart = [];
   final index;
   HomePageTab({this.index});
   @override
-  _HomePageTabState createState() => _HomePageTabState(index: index);
+  _HomePageTabState createState() =>
+      _HomePageTabState(index: index, cart: cart);
 }
 
 class _HomePageTabState extends State<HomePageTab> {
-  List<ProductInfoModel> cart = [];
+  final List<ProductInfoModel> cart;
   final index;
   int bottomNavigationBarItemIndex = 0;
-  _HomePageTabState({
-    this.index,
-  });
+  _HomePageTabState({this.index, this.cart});
   addCart(int index) {
     setState(() {
       cart.add(product[index]);
@@ -31,9 +31,6 @@ class _HomePageTabState extends State<HomePageTab> {
 
   @override
   Widget build(BuildContext context) {
-    ShowTabsPage showTabsPage = new ShowTabsPage(
-      cart: cart,
-    );
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -63,6 +60,7 @@ class _HomePageTabState extends State<HomePageTab> {
                               index: index,
                               cart: cart,
                               addItemCartCB: addCart,
+                              removeItemCartCB: removeCart,
                             );
                           }));
                         });

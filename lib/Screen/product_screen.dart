@@ -1,6 +1,5 @@
 import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
-import 'package:ecommerce/Screen/cart_screen.dart';
-import 'package:ecommerce/Screen/new_cart_screen.dart';
+import 'package:ecommerce/Screen/Tabs/homepage_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Model/product_info.dart';
 import '../Model/product_info.dart';
@@ -15,9 +14,9 @@ class ProductScreen extends StatefulWidget {
   @override
   _ProductScreenState createState() => _ProductScreenState(
       index: index,
-      cart: cart,
       addItemCartCB: addItemCartCB,
-      removeItemCartCB: removeItemCartCB);
+      removeItemCartCB: removeItemCartCB,
+      cart: cart);
 }
 
 class _ProductScreenState extends State<ProductScreen> {
@@ -52,8 +51,9 @@ class _ProductScreenState extends State<ProductScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => CartTab(
-                                  cart: cart,
-                                  removeItemCartCB: removeItemCartCB)));
+                                    cart: cart,
+                                    removeCartItemCB: removeItemCartCB,
+                                  )));
                     });
                   },
                   icon: Icon(
@@ -124,7 +124,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       style: ButtonStyle(),
                       onPressed: () {
                         setState(() {
-                          addItemCartCB(index);
+                          return addItemCartCB(index);
                         });
                       },
                       child: Text(
