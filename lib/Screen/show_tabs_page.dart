@@ -8,29 +8,13 @@ import 'package:flutter/rendering.dart';
 import '../Model/product_info.dart';
 
 class ShowTabsPage extends StatefulWidget {
-  HomePageTab homePageTab;
-  final List<ProductInfoModel> cart;
-  final Function(int) removeItemCartCB;
-  final Function(int) addItemCartCB;
-  ShowTabsPage(
-      {this.removeItemCartCB, this.addItemCartCB, this.cart, this.homePageTab});
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState(
-      removeItemCartCB: removeItemCartCB,
-      addItemCartCB: addItemCartCB,
-      cart: cart,
-      homePageTab: homePageTab);
+  _ShowTabsPageState createState() => _ShowTabsPageState();
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
-  HomePageTab homePageTab;
-  List<ProductInfoModel> cart = homePageTab.cart;
   HomePageTab homePageTab = new HomePageTab();
-  final Function(int) addItemCartCB;
   int bottomNavigationBarItemIndex;
-  final Function(int) removeItemCartCB;
-  _ShowTabsPageState(
-      {this.removeItemCartCB, this.addItemCartCB, this.cart, this.homePageTab});
   final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
 
   @override
@@ -54,7 +38,7 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
           Row(
             children: [
               Text(
-                '${cart.length}',
+                '${homePageTab.cart.length}',
                 style: TextStyle(
                     color: Colors.blueAccent,
                     fontSize: 18,
@@ -67,8 +51,7 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => CartTab(
-                                    cart: cart,
-                                    removeCartItemCB: removeItemCartCB,
+                                    cart: homePageTab.cart,
                                   )));
                     });
                   },
