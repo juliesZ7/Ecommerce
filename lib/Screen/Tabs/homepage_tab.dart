@@ -13,6 +13,7 @@ class HomePageTab extends StatefulWidget {
 }
 
 class _HomePageTabState extends State<HomePageTab> {
+  ShowTabsPage showTabsPage = new ShowTabsPage();
   final List<ProductInfoModel> cart;
   final index;
   int bottomNavigationBarItemIndex = 0;
@@ -31,6 +32,7 @@ class _HomePageTabState extends State<HomePageTab> {
 
   @override
   Widget build(BuildContext context) {
+    showTabsPage.cart = cart;
     return SafeArea(
       child: Container(
         color: Colors.white,
