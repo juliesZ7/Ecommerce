@@ -1,11 +1,9 @@
-import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:ecommerce/Screen/Tabs/homepage_tab.dart';
 import 'package:ecommerce/Screen/Tabs/profile_tab.dart';
 import 'package:ecommerce/Screen/Tabs/search_tab.dart';
 import 'package:ecommerce/Screen/Tabs/setting_tab.dart';
+import 'package:ecommerce/Screen/Widget/top_nav_ShowPageTab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import '../Model/product_info.dart';
 
 class ShowTabsPage extends StatefulWidget {
   @override
@@ -13,7 +11,6 @@ class ShowTabsPage extends StatefulWidget {
 }
 
 class _ShowTabsPageState extends State<ShowTabsPage> {
-  HomePageTab homePageTab = new HomePageTab();
   int bottomNavigationBarItemIndex;
   final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
 
@@ -26,43 +23,6 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Home Page',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-        elevation: 0,
-        centerTitle: true,
-        actions: [
-          Row(
-            children: [
-              Text(
-                '${homePageTab.cart.length}',
-                style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700),
-              ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CartTab(
-                                    cart: homePageTab.cart,
-                                  )));
-                    });
-                  },
-                  icon: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.blueAccent,
-                  ))
-            ],
-          ),
-        ],
-      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomNavigationBarItemIndex,
           unselectedItemColor: Colors.grey[500],
