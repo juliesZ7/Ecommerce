@@ -38,7 +38,6 @@ class _CartTabState extends State<CartTab> {
           ),
           elevation: 0,
           centerTitle: true,
-          // backgroundColor: Colors.white,
         ),
         body: SafeArea(
           child: Container(
@@ -90,7 +89,7 @@ class _CartTabState extends State<CartTab> {
                                       TextButton(
                                         onPressed: () {
                                           setState(() {
-                                            return removeCartItemCB(index);
+                                            removeCartItemCB(index);
                                           });
                                         },
                                         child: Icon(

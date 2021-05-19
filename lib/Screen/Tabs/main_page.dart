@@ -1,3 +1,5 @@
+import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:ecommerce/Screen/Tabs/homepage_tab.dart';
 import 'package:ecommerce/Screen/Tabs/profile_tab.dart';
 import 'package:ecommerce/Screen/Tabs/search_tab.dart';
@@ -5,54 +7,36 @@ import 'package:ecommerce/Screen/Tabs/setting_tab.dart';
 import 'package:ecommerce/Screen/Widget/top_nav_ShowPageTab.dart';
 import 'package:flutter/material.dart';
 
-class ShowTabsPage extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _ShowTabsPageState createState() => _ShowTabsPageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _ShowTabsPageState extends State<ShowTabsPage> {
+class _MainPageState extends State<MainPage> {
+  List<ProductInfoModel> cart = [];
   int bottomNavigationBarItemIndex;
-  final tabs = [HomePageTab(), SearchTab(), ProfileTab(), SettingTab()];
-
   @override
   void initState() {
     super.initState();
     bottomNavigationBarItemIndex = 0;
   }
 
+  addCart(int index) {
+    setState(() {
+      cart.add(product[index]);
+    });
+  }
+
+  removeCart(int index) {
+    setState(() {
+      cart.remove(cart[index]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Home Page',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-        elevation: 0,
-        centerTitle: true,
-        actions: [
-          Row(
-            children: [
-              Text(
-                '',
-                style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700),
-              ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  icon: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.blueAccent,
-                  ))
-            ],
-          ),
-        ],
-      ),
+      appBar: _topNav(),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomNavigationBarItemIndex,
           unselectedItemColor: Colors.grey[500],
@@ -94,7 +78,67 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
               bottomNavigationBarItemIndex = value;
             });
           }),
-      body: tabs[bottomNavigationBarItemIndex],
+      body: _switchPage(),
     );
+  }
+
+  _topNav() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      title: Text(
+        'Home Page',
+        style: TextStyle(color: Colors.blueAccent),
+      ),
+      elevation: 0,
+      centerTitle: true,
+      actions: [
+        Row(
+          children: [
+            Text(
+              '${cart.length}',
+              style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700),
+            ),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CartTab(
+                                cart: cart, removeCartItemCB: removeCart)));
+                  });
+                },
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.blueAccent,
+                ))
+          ],
+        ),
+      ],
+    );
+  }
+
+  _switchPage() {
+    switch (bottomNavigationBarItemIndex) {
+      case 0:
+        return HomePageTab(
+          cart: cart,
+          addItemCartCB: addCart,
+          removeItemCartCB: removeCart,
+        );
+      case 1:
+        return SearchTab();
+      case 2:
+        return ProfileTab();
+      default:
+        return Center(
+          child: Container(
+            child: Text('Empty'),
+          ),
+        );
+    }
   }
 }

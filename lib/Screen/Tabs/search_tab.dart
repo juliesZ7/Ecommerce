@@ -29,6 +29,7 @@ class _SearchTabState extends State<SearchTab> {
                           child: TextFormField(
                             controller: searchKey,
                             decoration: InputDecoration(
+                                prefix: Icon(Icons.lock),
                                 hintText: 'Search anything!',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(50))),

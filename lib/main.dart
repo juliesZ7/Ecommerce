@@ -1,7 +1,7 @@
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:ecommerce/Screen/Tabs/search_tab.dart';
 import 'package:ecommerce/Screen/login_screen.dart';
-import 'package:ecommerce/Screen/Tabs/show_tabs_page.dart';
+import 'package:ecommerce/Screen/Tabs/main_page.dart';
 import 'package:ecommerce/Screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: ShowTabsPage()));
+            debugShowCheckedModeBanner: false, home: MainPage()));
   }
 }
 
@@ -39,7 +39,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return ShowTabsPage();
+      return MainPage();
     }
     return WelcomePage();
   }

@@ -1,33 +1,26 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
-import 'package:ecommerce/Screen/Tabs/show_tabs_page.dart';
+import 'package:ecommerce/Screen/Tabs/main_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatefulWidget {
-  List<ProductInfoModel> cart = [];
-  final index;
-  HomePageTab({this.index});
+  final List<ProductInfoModel> cart;
+  final Function(int) addItemCartCB;
+  final Function(int) removeItemCartCB;
+  HomePageTab({this.cart, this.addItemCartCB, this.removeItemCartCB});
   @override
-  _HomePageTabState createState() =>
-      _HomePageTabState(index: index, cart: cart);
+  _HomePageTabState createState() => _HomePageTabState(
+      cart: cart,
+      addItemCartCB: addItemCartCB,
+      removeItemCartCB: removeItemCartCB);
 }
 
 class _HomePageTabState extends State<HomePageTab> {
   final List<ProductInfoModel> cart;
-  final index;
+  final Function(int) addItemCartCB;
+  final Function(int) removeItemCartCB;
   int bottomNavigationBarItemIndex = 0;
-  _HomePageTabState({this.index, this.cart});
-  addCart(int index) {
-    setState(() {
-      cart.add(product[index]);
-    });
-  }
-
-  removeCart(int index) {
-    setState(() {
-      cart.remove(cart[index]);
-    });
-  }
+  _HomePageTabState({this.cart, this.addItemCartCB, this.removeItemCartCB});
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +47,16 @@ class _HomePageTabState extends State<HomePageTab> {
                     return TextButton(
                       onPressed: () {
                         setState(() {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ProductScreen(
-                              index: index,
-                              cart: cart,
-                              addItemCartCB: addCart,
-                              removeItemCartCB: removeCart,
-                            );
-                          }));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductScreen(
+                                  index: index,
+                                  cart: cart,
+                                  addItemCartCB: addItemCartCB,
+                                  removeItemCartCB: removeItemCartCB,
+                                ),
+                              ));
                         });
                       },
                       child: Container(
