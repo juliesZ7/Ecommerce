@@ -23,6 +23,36 @@ class _ShowTabsPageState extends State<ShowTabsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Home Page',
+          style: TextStyle(color: Colors.blueAccent),
+        ),
+        elevation: 0,
+        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              Text(
+                '',
+                style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700),
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.blueAccent,
+                  ))
+            ],
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomNavigationBarItemIndex,
           unselectedItemColor: Colors.grey[500],
