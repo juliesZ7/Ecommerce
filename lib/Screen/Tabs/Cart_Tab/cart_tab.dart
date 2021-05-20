@@ -89,7 +89,7 @@ class _CartTabState extends State<CartTab> {
                                       TextButton(
                                         onPressed: () {
                                           setState(() {
-                                            removeCartItemCB(index);
+                                            return removeCartItemCB(index);
                                           });
                                         },
                                         child: Icon(

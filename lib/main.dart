@@ -1,8 +1,5 @@
 import 'package:ecommerce/Authentication_Service.dart';
-import 'package:ecommerce/Screen/Tabs/search_tab.dart';
-import 'package:ecommerce/Screen/login_screen.dart';
 import 'package:ecommerce/Screen/Tabs/main_page.dart';
-import 'package:ecommerce/Screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
