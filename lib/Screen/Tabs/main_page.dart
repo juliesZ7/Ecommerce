@@ -38,10 +38,12 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    // var widthScreen = MediaQuery.of(context).size.width;
-    // var heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+    final heightScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
+        height: heightScreen,
+        width: widthScreen,
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
@@ -51,201 +53,188 @@ class _MainPageState extends State<MainPage> {
           alignment: Alignment.topCenter,
           child: Form(
             child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
-                controller: scrollControllerHor,
-                scrollDirection: Axis.horizontal,
-                child: Scrollbar(
-                  controller: scrollControllerHor,
-                  isAlwaysShown: true,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      children: [
-                        Container(
-                            height: 150,
-                            child: Center(
-                              child: Container(
-                                // width: widthScreen * 0.7,
-                                width: 1200,
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          //Logo
-                                          Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20),
-                                              child: Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    Container(
-                                                      height: 70,
-                                                      width: 70,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      100),
-                                                          gradient:
-                                                              RadialGradient(
-                                                                  center:
-                                                                      Alignment
-                                                                          .center,
-                                                                  colors: [
-                                                                Colors.white
-                                                                    .withAlpha(
-                                                                        100),
-                                                                Colors.white
-                                                                    .withAlpha(
-                                                                        0)
-                                                              ])),
-                                                    ),
-                                                    IconButton(
-                                                        splashRadius: 20,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        iconSize: 100,
-                                                        onPressed: () {},
-                                                        icon: Image(
-                                                          image: AssetImage(
-                                                              'assets/graphics/Mod_Yourself_Logo_Transparent.jpg'),
-                                                        )),
-                                                  ]),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 100,
-                                          ),
-
-                                          //Search bar
-                                          Stack(
-                                            alignment: Alignment.centerRight,
-                                            children: [
-                                              Container(
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      //AppBar
+                      Container(
+                          height: 150,
+                          child: Center(
+                            child: Container(
+                              // width: widthScreen * 0.7,
+                              width: 1360,
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        //Logo
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 20),
+                                            child: Stack(
                                                 alignment: Alignment.center,
-                                                decoration: BoxDecoration(
+                                                children: [
+                                                  Container(
+                                                    height: 70,
+                                                    width: 70,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        gradient: RadialGradient(
+                                                            center: Alignment
+                                                                .center,
+                                                            colors: [
+                                                              Colors.white
+                                                                  .withAlpha(
+                                                                      100),
+                                                              Colors.white
+                                                                  .withAlpha(0)
+                                                            ])),
+                                                  ),
+                                                  IconButton(
+                                                      splashRadius: 20,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      iconSize: 100,
+                                                      onPressed: () {},
+                                                      icon: Image(
+                                                        image: AssetImage(
+                                                            'assets/graphics/Mod_Yourself_Logo_Transparent.jpg'),
+                                                      )),
+                                                ]),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 100,
+                                        ),
+
+                                        //Search bar
+                                        Stack(
+                                          alignment: Alignment.centerRight,
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              // height: widthScreen * 0.025,
+                                              // width: widthScreen * 0.3,
+                                              height: 50,
+                                              width: 500,
+                                              child: TextFormField(
+                                                controller: searchKey,
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                                decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText:
+                                                        'Search anything!',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.black),
+                                                    contentPadding:
+                                                        EdgeInsets.all(20)),
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 20),
+                                                child: Align(
+                                                  child: Icon(
+                                                    Icons.search,
                                                     color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30)),
-                                                // height: widthScreen * 0.025,
-                                                // width: widthScreen * 0.3,
-                                                height: 50,
-                                                width: 500,
-                                                child: TextFormField(
-                                                  controller: searchKey,
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                  decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      hintText:
-                                                          'Search anything!',
-                                                      hintStyle: TextStyle(
-                                                          color: Colors.black),
-                                                      contentPadding:
-                                                          EdgeInsets.all(20)),
+                                                  ),
+                                                  alignment:
+                                                      Alignment.centerRight,
                                                 ),
                                               ),
-                                              Container(
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 20),
-                                                  child: Align(
-                                                    child: Icon(
-                                                      Icons.search,
-                                                      color: Colors.white,
-                                                    ),
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          // width: widthScreen * 0.03,
+                                          width: 20,
+                                        ),
+
+                                        //User State
+                                        Container(
+                                          // height: heightScreen * 0.1,
+                                          // width: widthScreen * 0.12,
+                                          height: 100,
+                                          width: 300,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          // child: _changeUserState(
+                                          //     heightScreen, widthScreen)),
+                                          child: _changeUserState(),
+                                        ),
+
+                                        //Cart
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 50),
+                                          child: Stack(
+                                            alignment: Alignment.topRight,
+                                            children: [
+                                              IconButton(
+                                                onPressed: () {},
+                                                icon: Icon(Icons.shopping_cart,
+                                                    color: Colors.white,
+                                                    size: 30),
+                                              ),
+                                              Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        color:
+                                                            _changeCartColor()),
+                                                    width: 20,
+                                                    height: 20,
                                                   ),
-                                                ),
-                                              )
+                                                  Text(
+                                                    '${cart.length}',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  ),
+                                                ],
+                                              ),
                                             ],
                                           ),
-                                          SizedBox(
-                                            // width: widthScreen * 0.03,
-                                            width: 20,
-                                          ),
-
-                                          //User State
-                                          Container(
-                                            // height: heightScreen * 0.1,
-                                            // width: widthScreen * 0.12,
-                                            height: 100,
-                                            width: 300,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(100)),
-                                            // child: _changeUserState(
-                                            //     heightScreen, widthScreen)),
-                                            child: _changeUserState(),
-                                          ),
-
-                                          //Cart
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 50),
-                                            child: Stack(
-                                              alignment: Alignment.topRight,
-                                              children: [
-                                                IconButton(
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                      Icons.shopping_cart,
-                                                      color: Colors.white,
-                                                      size: 30),
-                                                ),
-                                                Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                          color:
-                                                              _changeCartColor()),
-                                                      width: 20,
-                                                      height: 20,
-                                                    ),
-                                                    Text(
-                                                      '${cart.length}',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w700),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                            )),
+                            ),
+                          )),
 
-                        //Real body
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height,
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
+                      //Real body
+                      Container(
+                        height: heightScreen,
+                        width: widthScreen,
+                        color: Colors.red,
+                      ),
+                    ],
                   ),
                 ),
               ),
