@@ -1,10 +1,6 @@
 import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
-import 'package:ecommerce/Screen/Tabs/profile_tab.dart';
-import 'package:ecommerce/Screen/Tabs/search_tab.dart';
 import 'package:flutter/material.dart';
-
-import 'new_home_page.dart';
+import 'package:ecommerce/Screen/Tabs/home_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -42,8 +38,6 @@ class _MainPageState extends State<MainPage> {
     final heightScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
-        height: heightScreen,
-        width: widthScreen,
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
@@ -67,19 +61,18 @@ class _MainPageState extends State<MainPage> {
                               width: 1360,
                               child: Stack(
                                 children: [
-                                  Center(
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        //Logo
-                                        Align(
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      //Logo
+                                      Expanded(
+                                        child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 20),
+                                                const EdgeInsets.only(left: 50),
                                             child: Stack(
                                                 alignment: Alignment.center,
                                                 children: [
@@ -114,114 +107,109 @@ class _MainPageState extends State<MainPage> {
                                                 ]),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 100,
-                                        ),
+                                      ),
 
-                                        //Search bar
-                                        Stack(
-                                          alignment: Alignment.centerRight,
-                                          children: [
-                                            Container(
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          30)),
-                                              // height: widthScreen * 0.025,
-                                              // width: widthScreen * 0.3,
-                                              height: 50,
-                                              width: 500,
-                                              child: TextFormField(
-                                                controller: searchKey,
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    hintText:
-                                                        'Search anything!',
-                                                    hintStyle: TextStyle(
-                                                        color: Colors.black),
-                                                    contentPadding:
-                                                        EdgeInsets.all(20)),
+                                      //Search bar
+                                      Stack(
+                                        alignment: Alignment.centerRight,
+                                        children: [
+                                          Container(
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                            // height: widthScreen * 0.025,
+                                            // width: widthScreen * 0.3,
+                                            height: 50,
+                                            width: 500,
+                                            child: TextFormField(
+                                              controller: searchKey,
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  hintText: 'Search anything!',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.black),
+                                                  contentPadding:
+                                                      EdgeInsets.all(20)),
+                                            ),
+                                          ),
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 20),
+                                              child: Align(
+                                                child: Icon(
+                                                  Icons.search,
+                                                  color: Colors.blueAccent,
+                                                ),
+                                                alignment:
+                                                    Alignment.centerRight,
                                               ),
                                             ),
-                                            Container(
-                                              child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 20),
-                                                child: Align(
-                                                  child: Icon(
-                                                    Icons.search,
-                                                    color: Colors.white,
-                                                  ),
-                                                  alignment:
-                                                      Alignment.centerRight,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        // width: widthScreen * 0.03,
+                                        width: 50,
+                                      ),
+
+                                      //User State
+                                      Container(
+                                        // height: heightScreen * 0.1,
+                                        // width: widthScreen * 0.12,
+                                        height: 100,
+                                        width: 250,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        // child: _changeUserState(
+                                        //     heightScreen, widthScreen)),
+                                        child: _changeUserState(),
+                                      ),
+
+                                      //Cart
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 50),
+                                        child: Stack(
+                                          alignment: Alignment.topRight,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.shopping_cart,
+                                                  color: Colors.white,
+                                                  size: 30),
+                                            ),
+                                            Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      color:
+                                                          _changeCartColor()),
+                                                  width: 20,
+                                                  height: 20,
                                                 ),
-                                              ),
-                                            )
+                                                Text(
+                                                  '${cart.length}',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
                                           ],
                                         ),
-                                        SizedBox(
-                                          // width: widthScreen * 0.03,
-                                          width: 20,
-                                        ),
-
-                                        //User State
-                                        Container(
-                                          // height: heightScreen * 0.1,
-                                          // width: widthScreen * 0.12,
-                                          height: 100,
-                                          width: 300,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(100)),
-                                          // child: _changeUserState(
-                                          //     heightScreen, widthScreen)),
-                                          child: _changeUserState(),
-                                        ),
-
-                                        //Cart
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 50),
-                                          child: Stack(
-                                            alignment: Alignment.topRight,
-                                            children: [
-                                              IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(Icons.shopping_cart,
-                                                    color: Colors.white,
-                                                    size: 30),
-                                              ),
-                                              Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                        color:
-                                                            _changeCartColor()),
-                                                    width: 20,
-                                                    height: 20,
-                                                  ),
-                                                  Text(
-                                                    '${cart.length}',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                      )
+                                    ],
                                   )
                                 ],
                               ),
@@ -231,8 +219,13 @@ class _MainPageState extends State<MainPage> {
                       //Real body
                       Container(
                         height: heightScreen,
-                        width: widthScreen,
+                        width: 1360,
                         color: Colors.red,
+                        child: HomePageTab(
+                          cart: cart,
+                          removeItemCartCB: removeCart,
+                          addItemCartCB: addCart,
+                        ),
                       ),
                     ],
                   ),
