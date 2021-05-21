@@ -1,5 +1,8 @@
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:ecommerce/Screen/Tabs/main_page.dart';
+import 'package:ecommerce/Screen/Tabs/new_home_page.dart';
+import 'package:ecommerce/Screen/login_screen.dart';
+import 'package:ecommerce/Screen/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'Screen/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,18 +18,15 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          Provider<AuthenticationServices>(
-              create: (_) => AuthenticationServices(FirebaseAuth.instance)),
-          StreamProvider(
-            create: (context) =>
-                context.read<AuthenticationServices>().authStateChanges,
-            initialData: null,
-          ),
-        ],
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false, home: MainPage()));
+    return MultiProvider(providers: [
+      Provider<AuthenticationServices>(
+          create: (_) => AuthenticationServices(FirebaseAuth.instance)),
+      StreamProvider(
+        create: (context) =>
+            context.read<AuthenticationServices>().authStateChanges,
+        initialData: null,
+      ),
+    ], child: MaterialApp(debugShowCheckedModeBanner: false, home: MainPage()));
   }
 }
 
