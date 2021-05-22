@@ -1,6 +1,6 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Screen/Tabs/home_page.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/home_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -131,7 +131,7 @@ class _MainPageState extends State<MainPage> {
                                                   border: InputBorder.none,
                                                   hintText: 'Search anything!',
                                                   hintStyle: TextStyle(
-                                                      color: Colors.black),
+                                                      color: Colors.blueAccent),
                                                   contentPadding:
                                                       EdgeInsets.all(20)),
                                             ),
@@ -220,7 +220,6 @@ class _MainPageState extends State<MainPage> {
                       Container(
                         height: heightScreen,
                         width: 1360,
-                        color: Colors.red,
                         child: HomePageTab(
                           cart: cart,
                           removeItemCartCB: removeCart,
