@@ -232,37 +232,40 @@ class _HomePageTabState extends State<HomePageTab> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    _categories(
-                        Icon(
-                          Icons.phone,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        'Phone'),
-                    _categories(
-                        Icon(
-                          Icons.laptop,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        'Laptop'),
-                    _categories(
-                        Icon(
-                          Icons.photo_camera,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        'Camera'),
-                    _categories(
-                        Icon(
-                          Icons.watch,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        'Accessories'),
-                  ],
+                Container(
+                  padding: EdgeInsets.all(50),
+                  child: Row(
+                    children: [
+                      _categories(
+                          Icon(
+                            Icons.phone,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          'Phone'),
+                      _categories(
+                          Icon(
+                            Icons.laptop,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          'Laptop'),
+                      _categories(
+                          Icon(
+                            Icons.photo_camera,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          'Camera'),
+                      _categories(
+                          Icon(
+                            Icons.watch,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          'Accessories'),
+                    ],
+                  ),
                 )
               ],
             ),
