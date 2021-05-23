@@ -200,7 +200,7 @@ class _MainPageState extends State<MainPage> {
                                                 Text(
                                                   '${cart.length}',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.w700),
                                                 ),
@@ -220,10 +220,12 @@ class _MainPageState extends State<MainPage> {
                       Container(
                         height: heightScreen,
                         width: 1360,
-                        child: HomePageTab(
-                          cart: cart,
-                          removeItemCartCB: removeCart,
-                          addItemCartCB: addCart,
+                        child: Center(
+                          child: HomePageTab(
+                            cart: cart,
+                            removeItemCartCB: removeCart,
+                            addItemCartCB: addCart,
+                          ),
                         ),
                       ),
                     ],
