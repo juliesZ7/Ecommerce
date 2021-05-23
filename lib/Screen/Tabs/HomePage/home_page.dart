@@ -1,6 +1,7 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:ecommerce/Screen/Tabs/HomePage/footer.dart';
 import 'package:ecommerce/Screen/Tabs/HomePage/categories.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/normal_list_of_product.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,8 @@ class _HomePageTabState extends State<HomePageTab> {
               children: [
                 Center(
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -172,7 +175,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                                 //   ),
                                                 // ],
                                                 color: Colors.white),
-                                            width: 150,
+                                            width: 180,
                                             height: 250,
                                             padding: EdgeInsets.all(8),
                                             child: Column(
@@ -197,10 +200,13 @@ class _HomePageTabState extends State<HomePageTab> {
                                                       height: 50,
                                                       child: Text(
                                                           '${product[index].name}',
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 2,
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 18,
+                                                              fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400)),
@@ -214,11 +220,15 @@ class _HomePageTabState extends State<HomePageTab> {
                                                             height: 30,
                                                             child: Text(
                                                                 '${product[index].price}',
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                maxLines: 1,
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .redAccent,
                                                                     fontSize:
-                                                                        18,
+                                                                        15,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600)),
@@ -366,7 +376,19 @@ class _HomePageTabState extends State<HomePageTab> {
                 SizedBox(
                   height: 20,
                 ),
-                Footer(),
+                NormalListOfProduct(
+                  cart: cart,
+                  addItemCartCB: addItemCartCB,
+                  removeItemCartCB: removeItemCartCB,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    color: Colors.blueGrey[900],
+                    width: screenWidth,
+                    alignment: Alignment.center,
+                    child: Footer()),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Screen/Tabs/search_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Screen/Tabs/HomePage/home_page.dart';
 
@@ -124,6 +125,19 @@ class _MainPageState extends State<MainPage> {
                                             height: 50,
                                             width: 500,
                                             child: TextFormField(
+                                              textInputAction:
+                                                  TextInputAction.go,
+                                              onFieldSubmitted: (summit) {
+                                                print(summit);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SearchTab(
+                                                              searchKeyFromMainPage:
+                                                                  summit,
+                                                            )));
+                                              },
                                               controller: searchKey,
                                               style: TextStyle(
                                                   color: Colors.black),
@@ -141,9 +155,21 @@ class _MainPageState extends State<MainPage> {
                                               padding:
                                                   EdgeInsets.only(right: 20),
                                               child: Align(
-                                                child: Icon(
-                                                  Icons.search,
+                                                child: IconButton(
+                                                  icon: Icon(Icons.search),
                                                   color: Colors.blueAccent,
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    SearchTab(
+                                                                      searchKeyFromMainPage:
+                                                                          searchKey
+                                                                              .text,
+                                                                    )));
+                                                  },
                                                 ),
                                                 alignment:
                                                     Alignment.centerRight,
@@ -219,7 +245,7 @@ class _MainPageState extends State<MainPage> {
                       //Real body
                       Container(
                         height: heightScreen,
-                        width: 1360,
+                        width: widthScreen,
                         child: Center(
                           child: HomePageTab(
                             cart: cart,

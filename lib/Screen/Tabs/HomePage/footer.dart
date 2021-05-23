@@ -13,7 +13,7 @@ class _FooterState extends State<Footer> {
     return Material(
       child: Container(
         height: 250,
-        width: widthScreen,
+        width: 1360,
         color: Colors.blueGrey[900],
         child: Padding(
           padding: const EdgeInsets.all(50),
