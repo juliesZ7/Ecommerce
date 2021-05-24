@@ -144,16 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               print('${loginRequestModel.password}');
                               loginRequestModel.toJson();
                               APIService apiService = new APIService();
-                              // apiService.login(loginRequestModel).then((value) {
-                              //   setState(() {
-                              //     loginResponseModel = value;
-                              //     print(
-                              //         'loginResponseModel: ${loginResponseModel}');
-                              //     print('value.token: ${value.token}');
-                              //   });
-                              // });
-                              // print(
-                              //     'tokenLoginScreen: ${loginResponseModel.token}');
                               apiService.login(loginRequestModel);
                               print(
                                   'tokenLoginScreen: ${loginResponseModel.token}');
