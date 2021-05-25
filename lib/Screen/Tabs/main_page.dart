@@ -1,4 +1,5 @@
 import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:ecommerce/Screen/Tabs/search_tab.dart';
 import 'package:ecommerce/Screen/WelcomePage.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,6 @@ class _MainPageState extends State<MainPage> {
                           height: 150,
                           child: Center(
                             child: Container(
-                              // width: widthScreen * 0.7,
                               width: 1360,
                               child: Stack(
                                 children: [
@@ -181,21 +181,16 @@ class _MainPageState extends State<MainPage> {
                                         ],
                                       ),
                                       SizedBox(
-                                        // width: widthScreen * 0.03,
                                         width: 50,
                                       ),
 
                                       //User State
                                       Container(
-                                        // height: heightScreen * 0.1,
-                                        // width: widthScreen * 0.12,
                                         height: 100,
                                         width: 250,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(100)),
-                                        // child: _changeUserState(
-                                        //     heightScreen, widthScreen)),
                                         child: _changeUserState(),
                                       ),
 
@@ -207,7 +202,19 @@ class _MainPageState extends State<MainPage> {
                                           alignment: Alignment.topRight,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                setState(() {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              CartTab(
+                                                                cart: cart,
+                                                                removeCartItemCB:
+                                                                    removeCart,
+                                                              )));
+                                                });
+                                              },
                                               icon: Icon(Icons.shopping_cart,
                                                   color: Colors.white,
                                                   size: 30),

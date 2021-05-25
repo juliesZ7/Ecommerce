@@ -19,35 +19,35 @@ class _CartTabState extends State<CartTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Column(
-            children: [
-              Text(
-                'Your Cart',
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                'Items: ${cart.length}',
-                style: TextStyle(
-                    color: Colors.black.withOpacity(0.7), fontSize: 15),
-              )
-            ],
-          ),
-          elevation: 0,
-          centerTitle: true,
-        ),
-        body: SafeArea(
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
           child: Container(
+            alignment: Alignment.center,
+            width: 1360,
             color: Colors.white,
             padding: const EdgeInsets.all(30),
             child: (cart.length != 0)
                 ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Column(
+                        children: [
+                          Text(
+                            'Your Cart',
+                            style: TextStyle(color: Colors.black, fontSize: 25),
+                          ),
+                          Text(
+                            'Items: ${cart.length}',
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(0.7),
+                                fontSize: 15),
+                          )
+                        ],
+                      ),
                       Expanded(
                         child: SizedBox(
+                          width: 1000,
                           child: ListView.separated(
                               itemBuilder: (context, index) {
                                 return Container(

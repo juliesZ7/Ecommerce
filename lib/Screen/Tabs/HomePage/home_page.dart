@@ -152,6 +152,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
+                                                  maintainState: false,
                                                   builder: (context) =>
                                                       ProductScreen(
                                                     index: index,
