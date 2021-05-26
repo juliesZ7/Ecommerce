@@ -1,21 +1,21 @@
 import 'package:ecommerce/Model/product_info.dart';
 import 'package:flutter/material.dart';
 
-class CartTab extends StatefulWidget {
+class CartPage extends StatefulWidget {
   final List<ProductInfoModel> cart;
   final Function(int) removeCartItemCB;
 
-  CartTab({this.cart, this.removeCartItemCB});
+  CartPage({this.cart, this.removeCartItemCB});
   @override
-  _CartTabState createState() =>
-      _CartTabState(cart: cart, removeCartItemCB: removeCartItemCB);
+  _CartPageState createState() =>
+      _CartPageState(cart: cart, removeCartItemCB: removeCartItemCB);
 }
 
-class _CartTabState extends State<CartTab> {
+class _CartPageState extends State<CartPage> {
   final List<ProductInfoModel> cart;
   final Function(int) removeCartItemCB;
 
-  _CartTabState({this.cart, this.removeCartItemCB});
+  _CartPageState({this.cart, this.removeCartItemCB});
 
   @override
   Widget build(BuildContext context) {

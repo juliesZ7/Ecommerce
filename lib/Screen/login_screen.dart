@@ -1,5 +1,5 @@
 import 'package:ecommerce/Model/login_model.dart';
-import 'package:ecommerce/Screen/Tabs/main_page.dart';
+import 'package:ecommerce/Screen/Tabs/AppBar_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -162,11 +162,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => MainPage()));
+                                        builder: (context) => MainPage(token: token)));
                               } else {
                                 showDialog(
                                     context: context,
-                                    builder: (_) => AlertDialog(
+                                    builder: (BuildContext context) => AlertDialog(
                                           content: Container(
                                             height: 300,
                                             width: 500,
@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             )
                                           ],
                                         ),
-                                    barrierDismissible: true);
+                                    barrierDismissible: false);
                               }
                             }
                           });

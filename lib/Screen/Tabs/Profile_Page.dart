@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ProfileTab extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   @override
-  _ProfileTabState createState() => _ProfileTabState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfileTabState extends State<ProfileTab> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

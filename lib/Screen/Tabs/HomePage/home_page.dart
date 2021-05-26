@@ -1,7 +1,7 @@
 import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/footer.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/categories.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/normal_list_of_product.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/Footer.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/Categories.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/Normal_list_of_product.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,8 @@ class _HomePageTabState extends State<HomePageTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
