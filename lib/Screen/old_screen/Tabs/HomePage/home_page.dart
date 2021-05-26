@@ -1,28 +1,42 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/footer.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/categories.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/normal_list_of_product.dart';
-import 'package:ecommerce/Screen/product_screen.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/HomePage/footer.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/HomePage/categories.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/HomePage/normal_list_of_product.dart';
+import 'package:ecommerce/Screen/old_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  HomePageTab({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  final List<ProductModel> products;
+  HomePageTab({
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
   @override
   _HomePageTabState createState() => _HomePageTabState(
-      cart: cart,
-      addItemCartCB: addItemCartCB,
-      removeItemCartCB: removeItemCartCB);
+        cart: cart,
+        addItemCartCB: addItemCartCB,
+        removeItemCartCB: removeItemCartCB,
+        products: products,
+      );
 }
 
 class _HomePageTabState extends State<HomePageTab> {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
+  final List<ProductModel> products;
   int bottomNavigationBarItemIndex = 0;
-  _HomePageTabState({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  _HomePageTabState({
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
   final LinearGradient _fontGradient =
       LinearGradient(colors: <Color>[Colors.redAccent, Colors.orangeAccent]);
   @override
@@ -188,7 +202,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                                       height: 140,
                                                       child: Image(
                                                           image: AssetImage(
-                                                              '${product[index].image}'))),
+                                                              '${products[index].image}'))),
                                                 ),
                                                 SizedBox(
                                                   height: 10,
@@ -200,7 +214,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                                     Container(
                                                       height: 50,
                                                       child: Text(
-                                                          '${product[index].name}',
+                                                          '${products[index].name}',
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           maxLines: 2,
@@ -220,7 +234,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                                                 .bottomLeft,
                                                             height: 30,
                                                             child: Text(
-                                                                '${product[index].price}',
+                                                                '${products[index].price}',
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
@@ -266,7 +280,7 @@ class _HomePageTabState extends State<HomePageTab> {
                                       SizedBox(
                                         width: 15,
                                       ),
-                                  itemCount: product.length),
+                                  itemCount: products.length),
                             ),
                           ),
                         ],
@@ -381,6 +395,7 @@ class _HomePageTabState extends State<HomePageTab> {
                   cart: cart,
                   addItemCartCB: addItemCartCB,
                   removeItemCartCB: removeItemCartCB,
+                  products: products,
                 ),
                 SizedBox(
                   height: 20,

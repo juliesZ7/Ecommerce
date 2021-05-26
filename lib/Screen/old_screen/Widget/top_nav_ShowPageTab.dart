@@ -1,9 +1,9 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:flutter/material.dart';
 
 class TopNav extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   TopNav({this.cart, this.addItemCartCB, this.removeItemCartCB});
@@ -15,7 +15,7 @@ class TopNav extends StatefulWidget {
 }
 
 class _TopNavState extends State<TopNav> {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   _TopNavState({this.cart, this.addItemCartCB, this.removeItemCartCB});

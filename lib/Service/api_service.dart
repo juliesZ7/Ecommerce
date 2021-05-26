@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:io';
-import 'package:ecommerce/Model/login_model.dart';
+import 'package:ecommerce/Api/Model/login_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

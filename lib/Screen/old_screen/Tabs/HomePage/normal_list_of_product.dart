@@ -1,25 +1,38 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/product_screen.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
+import 'package:ecommerce/Screen/old_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class NormalListOfProduct extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  NormalListOfProduct({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  final List<ProductModel> products;
+  NormalListOfProduct({
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
   @override
   _NormalListOfProductState createState() => _NormalListOfProductState(
-      cart: cart,
-      addItemCartCB: addItemCartCB,
-      removeItemCartCB: removeItemCartCB);
+        cart: cart,
+        addItemCartCB: addItemCartCB,
+        removeItemCartCB: removeItemCartCB,
+        products: products,
+      );
 }
 
 class _NormalListOfProductState extends State<NormalListOfProduct> {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  _NormalListOfProductState(
-      {this.cart, this.addItemCartCB, this.removeItemCartCB});
+  final List<ProductModel> products;
+  _NormalListOfProductState({
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -74,7 +87,7 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                                       height: 140,
                                       child: Image(
                                           image: AssetImage(
-                                              '${product[index].image}'))),
+                                              '${products[index].image}'))),
                                 ),
                                 SizedBox(
                                   height: 10,
@@ -84,7 +97,7 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                                   children: [
                                     Container(
                                       height: 50,
-                                      child: Text('${product[index].name}',
+                                      child: Text('${products[index].name}',
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
                                           style: TextStyle(
@@ -95,11 +108,14 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                                     Container(
                                       alignment: Alignment.bottomLeft,
                                       height: 30,
-                                      child: Text('${product[index].price}',
-                                          style: TextStyle(
-                                              color: Colors.redAccent,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600)),
+                                      child: Text(
+                                        '${products[index].price}',
+                                        style: TextStyle(
+                                          color: Colors.redAccent,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -111,7 +127,7 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                   separatorBuilder: (context, index) => SizedBox(
                         width: 15,
                       ),
-                  itemCount: product.length),
+                  itemCount: products.length),
             ),
           ),
         ),

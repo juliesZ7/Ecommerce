@@ -1,4 +1,4 @@
-import 'package:ecommerce/Model/login_model.dart';
+import 'package:ecommerce/Api/Model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';

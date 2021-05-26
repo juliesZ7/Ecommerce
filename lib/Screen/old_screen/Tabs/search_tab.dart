@@ -1,18 +1,27 @@
-import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class SearchTab extends StatefulWidget {
   final String searchKeyFromMainPage;
-  SearchTab({this.searchKeyFromMainPage});
+  final List<ProductModel> products;
+  SearchTab({
+    this.searchKeyFromMainPage,
+    this.products,
+  });
   @override
-  _SearchTabState createState() =>
-      _SearchTabState(searchKeyFromMainPage: searchKeyFromMainPage);
+  _SearchTabState createState() => _SearchTabState(
+        searchKeyFromMainPage: searchKeyFromMainPage,
+      );
 }
 
 class _SearchTabState extends State<SearchTab> {
   final String searchKeyFromMainPage;
-  final List<ProductInfoModel> searchResult = [];
-  _SearchTabState({this.searchKeyFromMainPage});
+  final List<ProductModel> products;
+  final List<ProductModel> searchResult = [];
+  _SearchTabState({
+    this.searchKeyFromMainPage,
+    this.products,
+  });
   TextEditingController searchKey = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -56,9 +65,9 @@ class _SearchTabState extends State<SearchTab> {
 
   Widget _search(String text) {
     int i;
-    for (i = 0; i <= product.length; i++) {
-      if (product[i].name.contains(text)) {
-        searchResult.add(product[i]);
+    for (i = 0; i <= products.length; i++) {
+      if (products[i].name.contains(text)) {
+        searchResult.add(products[i]);
       }
     }
     if (searchResult.isEmpty)

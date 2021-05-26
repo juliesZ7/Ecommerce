@@ -1,9 +1,9 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
-import 'package:ecommerce/Screen/Tabs/search_tab.dart';
-import 'package:ecommerce/Screen/WelcomePage.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/Cart_Tab/cart_tab.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/search_tab.dart';
+import 'package:ecommerce/Screen/old_screen/WelcomePage.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/home_page.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/HomePage/home_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  List<ProductInfoModel> cart = [];
+  List<ProductModel> cart = [];
   int bottomNavigationBarItemIndex;
   TextEditingController searchKey = new TextEditingController();
   bool userState;
@@ -24,11 +24,7 @@ class _MainPageState extends State<MainPage> {
     userState = false;
   }
 
-  addCart(int index) {
-    setState(() {
-      cart.add(product[index]);
-    });
-  }
+  addCart(int index) {}
 
   removeCart(int index) {
     setState(() {

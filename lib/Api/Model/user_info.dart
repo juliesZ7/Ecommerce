@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import 'product_info.dart';
+import 'product_model.dart';
 import 'dart:async';
 
 class UserInfoModel {
@@ -18,7 +18,7 @@ class UserInfoModel {
   String email;
   String address;
   int phone;
-  List<ProductInfoModel> cart;
+  List<ProductModel> cart;
   String version;
   UserInfoModel(
       {this.role,

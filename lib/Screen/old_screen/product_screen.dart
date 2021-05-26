@@ -1,33 +1,44 @@
-import 'package:ecommerce/Screen/Tabs/Cart_Tab/cart_tab.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/home_page.dart';
-import 'package:ecommerce/Screen/Widget/top_nav_ShowPageTab.dart';
+import 'package:ecommerce/Screen/old_screen/Tabs/Cart_Tab/cart_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Model/product_info.dart';
-import '../Model/product_info.dart';
-import 'Widget/top_nav_ShowPageTab.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
 
 class ProductScreen extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  ProductScreen(
-      {this.index, this.cart, this.addItemCartCB, this.removeItemCartCB});
+  final List<ProductModel> products;
+
+  ProductScreen({
+    this.index,
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
   @override
   _ProductScreenState createState() => _ProductScreenState(
-      index: index,
-      addItemCartCB: addItemCartCB,
-      removeItemCartCB: removeItemCartCB,
-      cart: cart);
+        index: index,
+        addItemCartCB: addItemCartCB,
+        removeItemCartCB: removeItemCartCB,
+        cart: cart,
+        products: products,
+      );
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  _ProductScreenState(
-      {this.index, this.cart, this.addItemCartCB, this.removeItemCartCB});
+  final List<ProductModel> products;
+  _ProductScreenState({
+    this.index,
+    this.cart,
+    this.addItemCartCB,
+    this.removeItemCartCB,
+    this.products,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +97,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image(
-                        image: AssetImage('${product[index].image}'),
+                        image: AssetImage('${products[index].image}'),
                         width: 400,
                       ),
                       SizedBox(
@@ -100,13 +111,13 @@ class _ProductScreenState extends State<ProductScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '${product[index].name}',
+                              '${products[index].name}',
                               style: TextStyle(fontSize: 30),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Text(
-                                '${product[index].price}',
+                                '${products[index].price}',
                                 style: TextStyle(
                                     fontSize: 30,
                                     color: Colors.redAccent,
@@ -158,7 +169,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 40, right: 40, top: 20, bottom: 20),
-                          child: Text('${product[index].description}'),
+                          child: Text('${products[index].description}'),
                         ),
                       ],
                     ),
@@ -169,77 +180,6 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
         ),
       ),
-      // body: Container(
-      //   color: Colors.white,
-      //   padding: EdgeInsets.all(30),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Expanded(
-      //         child: SizedBox(
-      //           child: ListView(
-      //             children: [
-      //               Center(
-      //                 child: Container(
-      //                     height: MediaQuery.of(context).size.height * 0.3,
-      //                     child: Image.asset('${product[index].image}')),
-      //               ),
-      //               SizedBox(
-      //                 height: 50,
-      //               ),
-      //               Padding(
-      //                 padding: const EdgeInsets.only(left: 10),
-      //                 child: Text(
-      //                   '${product[index].name}',
-      //                   style: TextStyle(
-      //                       fontSize: 25, fontWeight: FontWeight.bold),
-      //                 ),
-      //               ),
-      //               Padding(
-      //                 padding: const EdgeInsets.only(left: 10),
-      //                 child: Text(
-      //                   '${product[index].price}',
-      //                   style: TextStyle(
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 30,
-      //                       color: Colors.redAccent),
-      //                 ),
-      //               ),
-      //               Padding(
-      //                 padding: const EdgeInsets.all(10),
-      //                 child: Text(
-      //                   '${product[index].description}',
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //       ),
-      //       Center(
-      //         child: Container(
-      //             height: 50,
-      //             width: 300,
-      //             decoration: BoxDecoration(
-      //                 borderRadius: BorderRadius.circular(50),
-      //                 gradient: LinearGradient(
-      //                     begin: Alignment.centerLeft,
-      //                     end: Alignment.centerRight,
-      //                     colors: [Colors.blueAccent, Colors.greenAccent])),
-      //             child: TextButton(
-      //                 style: ButtonStyle(),
-      //                 onPressed: () {
-      //                   setState(() {
-      //                     return addItemCartCB(index);
-      //                   });
-      //                 },
-      //                 child: Text(
-      //                   'Add to cart',
-      //                   style: TextStyle(color: Colors.white, fontSize: 20),
-      //                 ))),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

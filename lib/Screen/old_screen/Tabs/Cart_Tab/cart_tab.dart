@@ -1,8 +1,8 @@
-import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Api/Model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class CartTab extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) removeCartItemCB;
 
   CartTab({this.cart, this.removeCartItemCB});
@@ -12,7 +12,7 @@ class CartTab extends StatefulWidget {
 }
 
 class _CartTabState extends State<CartTab> {
-  final List<ProductInfoModel> cart;
+  final List<ProductModel> cart;
   final Function(int) removeCartItemCB;
 
   _CartTabState({this.cart, this.removeCartItemCB});

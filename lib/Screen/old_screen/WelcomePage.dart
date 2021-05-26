@@ -1,5 +1,5 @@
-import 'package:ecommerce/Screen/login_screen.dart';
-import 'package:ecommerce/Screen/register_screen.dart';
+import 'package:ecommerce/Screen/old_screen/login_screen.dart';
+import 'package:ecommerce/Screen/old_screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
