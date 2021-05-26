@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/Service/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -137,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextButton(
                         onPressed: () {
-                          setState(() {
+                          setState(() async {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
                               print('${loginRequestModel.email}');
@@ -145,8 +146,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               loginRequestModel.toJson();
                               APIService apiService = new APIService();
                               apiService.login(loginRequestModel);
-                              print(
-                                  'tokenLoginScreen: ${loginResponseModel.token}');
+                              final data =
+                                  await apiService.login(loginRequestModel);
+                              final SharedPreferences sharedPreferences =
+                                  await prefs;
+                              sharedPreferences.setString(
+                                  'authtoken', data.token);
+                              print(sharedPreferences.getString('authtoken'));
                             }
                           });
                         },
