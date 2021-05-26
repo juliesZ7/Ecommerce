@@ -1,4 +1,5 @@
 import 'package:ecommerce/Model/login_model.dart';
+import 'package:ecommerce/Screen/Tabs/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   LoginRequestModel loginRequestModel = new LoginRequestModel();
   LoginResponseModel loginResponseModel = new LoginResponseModel();
   final api = APIService();
+  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   @override
   void initState() {
     // TODO: implement initState
@@ -142,22 +144,46 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() async {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-<<<<<<< Updated upstream
                               print('${loginRequestModel.email}');
                               print('${loginRequestModel.password}');
                               loginRequestModel.toJson();
                               APIService apiService = new APIService();
-                              apiService.login(loginRequestModel);
                               final data =
                                   await apiService.login(loginRequestModel);
                               final SharedPreferences sharedPreferences =
                                   await prefs;
                               sharedPreferences.setString(
-                                  'authtoken', data.token);
-                              print(sharedPreferences.getString('authtoken'));
-=======
-                              api.login(loginRequestModel);
->>>>>>> Stashed changes
+                                  'x-auth-token', data.token);
+                              final String token =
+                                  sharedPreferences.getString('x-auth-token');
+                              print(
+                                  'Token = ${sharedPreferences.getString('x-auth-token')}');
+                              if (token != 'non-token') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MainPage()));
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => AlertDialog(
+                                          content: Container(
+                                            height: 300,
+                                            width: 500,
+                                            child: Text(
+                                                'Username or password is not correct'),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('OK'),
+                                            )
+                                          ],
+                                        ),
+                                    barrierDismissible: true);
+                              }
                             }
                           });
                         },
