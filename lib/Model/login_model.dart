@@ -8,9 +8,9 @@ class LoginResponseModel {
   });
   factory LoginResponseModel.fromJson(Map<String, String> json) {
     return LoginResponseModel(
-        token: json['Auth-Token'] != null
-            ? json['Auth-Token']
-            : 'Auth-Token = null');
+        token: json['x-auth-token'] != null
+            ? json['x-auth-token']
+            : 'X-Auth-Token == null');
   }
 }
 

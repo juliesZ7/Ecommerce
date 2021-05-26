@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   LoginRequestModel loginRequestModel = new LoginRequestModel();
   LoginResponseModel loginResponseModel = new LoginResponseModel();
+  final api = APIService();
   @override
   void initState() {
     // TODO: implement initState
@@ -141,6 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() async {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
+<<<<<<< Updated upstream
                               print('${loginRequestModel.email}');
                               print('${loginRequestModel.password}');
                               loginRequestModel.toJson();
@@ -153,6 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               sharedPreferences.setString(
                                   'authtoken', data.token);
                               print(sharedPreferences.getString('authtoken'));
+=======
+                              api.login(loginRequestModel);
+>>>>>>> Stashed changes
                             }
                           });
                         },
