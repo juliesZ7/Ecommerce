@@ -1,4 +1,5 @@
 import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Screen/Tabs/HomePage/normal_list_of_product.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -28,41 +29,52 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 30,
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: TextFormField(
+                      controller: searchKey,
+                      onFieldSubmitted: (summit) {
+                        setState(() {
+                          searchResult.clear();
+                          searchKey.text = summit;
+                        });
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          hintText: 'Search anything!',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50))),
                     ),
-                    Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: TextFormField(
-                        controller: searchKey,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.search),
-                            hintText: 'Search anything!',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50))),
-                      ),
-                    ),
-                    _search(searchKey.text),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 1000,
+                    width: 1360,
+                    child: _search(searchKey.text),
+                  )
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _search(String text) {
+  _search(String text) {
     int i;
-    for (i = 0; i <= product.length; i++) {
-      if (product[i].name.contains(text)) {
+    for (i = 0; i < product.length; i++) {
+      if (product[i].name.toLowerCase().contains(text.toLowerCase())) {
         searchResult.add(product[i]);
       }
     }
@@ -72,35 +84,7 @@ class _SearchPageState extends State<SearchPage> {
       );
     else {
       i = 0;
-      return ListView.separated(
-          itemBuilder: (context, i) => Container(
-                child: Row(
-                  children: [
-                    Image(
-                      image: AssetImage(
-                        '${searchResult[i].image}',
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '${searchResult[i].name}',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          '${searchResult[i].price}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-          separatorBuilder: (context, i) => Divider(),
-          itemCount: searchResult.length);
+      return Center(child: NormalListOfProduct(product: searchResult));
     }
   }
 }

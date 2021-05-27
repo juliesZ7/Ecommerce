@@ -1,4 +1,4 @@
-import 'package:ecommerce/Model/user_info.dart';
+import 'package:ecommerce/Model/User_Info_Model.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoScreen extends StatefulWidget {

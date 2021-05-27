@@ -170,12 +170,6 @@ class _HomePageTabState extends State<HomePageTab> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                // boxShadow: [
-                                                //   BoxShadow(
-                                                //     color: Colors.grey[700],
-                                                //     blurRadius: 10,
-                                                //   ),
-                                                // ],
                                                 color: Colors.white),
                                             width: 180,
                                             height: 250,
@@ -380,6 +374,7 @@ class _HomePageTabState extends State<HomePageTab> {
                 ),
                 NormalListOfProduct(
                   cart: cart,
+                  product: product,
                   addItemCartCB: addItemCartCB,
                   removeItemCartCB: removeItemCartCB,
                 ),

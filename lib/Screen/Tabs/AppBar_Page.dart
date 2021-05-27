@@ -2,34 +2,38 @@ import 'package:ecommerce/Model/product_info.dart';
 import 'package:ecommerce/Screen/Tabs/Cart_Page/Cart_Page.dart';
 import 'package:ecommerce/Screen/Tabs/Search_Page.dart';
 import 'package:ecommerce/Screen/WelcomePage.dart';
+import 'package:ecommerce/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Screen/Tabs/HomePage/Home_Page.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
-  final token;
-  MainPage({this.token});
+  final Function logout;
+  final bool isLogin;
+  MainPage({this.isLogin = false, this.logout});
   @override
-  _MainPageState createState() => _MainPageState(token: token);
+  _MainPageState createState() => _MainPageState(isLogin: isLogin);
 }
 
 class _MainPageState extends State<MainPage> {
-  final token;
+  final bool isLogin;
+  _MainPageState({this.isLogin});
   List<ProductInfoModel> cart = [];
   int bottomNavigationBarItemIndex;
   TextEditingController searchKey = new TextEditingController();
-  bool userState;
   ScrollController scrollControllerVer = new ScrollController();
   ScrollController scrollControllerHor = new ScrollController();
-  _MainPageState({this.token});
+
   @override
   void initState() {
     super.initState();
     bottomNavigationBarItemIndex = 0;
-    if (token != null) {
-      userState = true;
-    } else
-      userState = false;
+    // if (token != null) {
+    //   userState = true;
+    // } else
+    //   userState = false;
+    // userState = true;
   }
 
   addCart(int index) {
@@ -259,7 +263,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   _changeUserState() {
-    if (userState) {
+    if (isLogin) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -288,13 +292,35 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
-          IconButton(
-              icon: Icon(
-                Icons.arrow_drop_down,
-                color: Colors.white,
-                size: 20,
-              ),
-              onPressed: () {})
+          // IconButton(
+          //     icon: Icon(
+          //       Icons.arrow_drop_down,
+          //       color: Colors.white,
+          //       size: 20,
+          //     ),
+          //     onPressed: () {})
+          DropdownButton(
+            icon: Icon(
+              Icons.arrow_drop_down,
+              size: 20,
+              color: Colors.white,
+            ),
+            items: ['Your info', 'Log out'].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: new Text(value),
+              );
+            }).toList(),
+            onChanged: (value) async {
+              if (value == 'Your info')
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchPage()));
+              if (value == 'Log out') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomePage()));
+              }
+            },
+          )
         ],
       );
     }

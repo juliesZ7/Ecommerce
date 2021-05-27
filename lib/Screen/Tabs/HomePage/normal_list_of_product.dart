@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 
 class NormalListOfProduct extends StatefulWidget {
   final List<ProductInfoModel> cart;
+  final List<ProductInfoModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  NormalListOfProduct({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  NormalListOfProduct(
+      {this.cart, this.product, this.addItemCartCB, this.removeItemCartCB});
   @override
   _NormalListOfProductState createState() => _NormalListOfProductState(
+      product: product,
       cart: cart,
       addItemCartCB: addItemCartCB,
       removeItemCartCB: removeItemCartCB);
@@ -16,10 +19,11 @@ class NormalListOfProduct extends StatefulWidget {
 
 class _NormalListOfProductState extends State<NormalListOfProduct> {
   final List<ProductInfoModel> cart;
+  final List<ProductInfoModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   _NormalListOfProductState(
-      {this.cart, this.addItemCartCB, this.removeItemCartCB});
+      {this.cart, this.product, this.addItemCartCB, this.removeItemCartCB});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +35,6 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
-            border: Border.all(color: Colors.grey[300], width: 2),
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 30, right: 30, top: 20),

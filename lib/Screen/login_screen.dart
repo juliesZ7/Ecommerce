@@ -1,5 +1,6 @@
 import 'package:ecommerce/Model/login_model.dart';
 import 'package:ecommerce/Screen/Tabs/AppBar_Page.dart';
+import 'package:ecommerce/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Authentication_Service.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   LoginRequestModel loginRequestModel = new LoginRequestModel();
   LoginResponseModel loginResponseModel = new LoginResponseModel();
   final api = APIService();
-  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+  String _errorMessage = '';
   @override
   void initState() {
     // TODO: implement initState
@@ -128,6 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 40,
                 ),
+                if (_errorMessage != null && _errorMessage.isNotEmpty) Text('loi: $_errorMessage',style: Theme.of(context).textTheme.bodyText1,),
                 Center(
                   child: Container(
                     height: 50,
@@ -140,52 +142,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           colors: [Colors.blueAccent, Colors.greenAccent]),
                     ),
                     child: TextButton(
-                        onPressed: () {
-                          setState(() async {
-                            if (_formKey.currentState.validate()) {
-                              _formKey.currentState.save();
-                              print('${loginRequestModel.email}');
-                              print('${loginRequestModel.password}');
-                              loginRequestModel.toJson();
-                              APIService apiService = new APIService();
-                              final data =
-                                  await apiService.login(loginRequestModel);
-                              final SharedPreferences sharedPreferences =
-                                  await prefs;
-                              sharedPreferences.setString(
-                                  'x-auth-token', data.token);
-                              final String token =
-                                  sharedPreferences.getString('x-auth-token');
-                              print(
-                                  'Token = ${sharedPreferences.getString('x-auth-token')}');
-                              if (token != 'non-token') {
-                                Navigator.push(
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                            print('${loginRequestModel.email}');
+                            print('${loginRequestModel.password}');
+
+                            APIService apiService = new APIService();
+                            apiService.login(loginRequestModel).then(
+                              (value) {
+                                if (value != null) {
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => MainPage(token: token)));
-                              } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => AlertDialog(
-                                          content: Container(
-                                            height: 300,
-                                            width: 500,
-                                            child: Text(
-                                                'Username or password is not correct'),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text('OK'),
-                                            )
-                                          ],
-                                        ),
-                                    barrierDismissible: false);
-                              }
-                            }
-                          });
+                                      builder: (context) =>
+                                          MainPage(isLogin: true),
+                                    ),
+                                  );
+                                }
+                              },
+                            ).onError((error, stackTrace) {
+                              setState(() {
+                                _errorMessage = error.toString();
+                              });
+                            });
+                          }
                         },
                         child: Text(
                           loginResponseModel.token == null

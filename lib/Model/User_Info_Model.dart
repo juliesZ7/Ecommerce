@@ -3,23 +3,23 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 import 'product_info.dart';
 import 'dart:async';
 
 class UserInfoModel {
-  String role;
-  String id;
-  String firstname;
-  String lastname;
-  String username;
-  String password;
-  String email;
-  String address;
-  int phone;
-  List<ProductInfoModel> cart;
-  String version;
+  final String role;
+  final String id;
+  final String firstname;
+  final String lastname;
+  final String username;
+  final String password;
+  final String email;
+  final String address;
+  final int phone;
+  final List<ProductInfoModel> cart;
+  final String version;
+  final String token;
   UserInfoModel(
       {this.role,
       this.id,
@@ -31,7 +31,8 @@ class UserInfoModel {
       this.address,
       this.phone,
       this.cart,
-      this.version});
+      this.version,
+      this.token});
   factory UserInfoModel.fromJson(Map<String, dynamic> json) {
     return UserInfoModel(
       role: json['role'],

@@ -3,6 +3,7 @@ import 'package:ecommerce/Screen/Tabs/AppBar_Page.dart';
 import 'package:ecommerce/Screen/login_screen.dart';
 import 'package:ecommerce/Screen/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Screen/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
