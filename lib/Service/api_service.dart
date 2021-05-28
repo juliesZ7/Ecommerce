@@ -1,11 +1,5 @@
-import 'dart:html';
-import 'dart:io';
-import 'package:ecommerce/Model/login_model.dart';
-import 'package:ecommerce/main.dart';
+import 'package:ecommerce/Model/Login_Model.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 class APIService {
   Future<LoginResponseModel> login(LoginRequestModel requestModel) async {

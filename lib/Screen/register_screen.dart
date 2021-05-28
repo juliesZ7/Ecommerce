@@ -1,6 +1,6 @@
 import 'package:ecommerce/Screen/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Authentication_Service.dart';
+import 'package:ecommerce/Service/Authentication_Service.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {

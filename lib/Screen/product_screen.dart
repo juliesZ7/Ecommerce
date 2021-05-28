@@ -1,10 +1,10 @@
-import 'package:ecommerce/Screen/Tabs/Cart_Page/Cart_Page.dart';
+import 'package:ecommerce/Screen/Pages/Cart_Page/Cart_Page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Model/product_info.dart';
-import '../Model/product_info.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
+import '../Model/Product_Info_Model.dart';
 
 class ProductScreen extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
@@ -19,7 +19,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final index;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
@@ -171,7 +171,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 40, right: 40, top: 20, bottom: 20),
-                              child: Text('${product[index].description}'),
+                              child: Text('${product[index].content}'),
                             ),
                           ],
                         ),

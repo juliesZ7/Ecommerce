@@ -1,10 +1,6 @@
 import 'dart:convert';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
 import 'package:http/http.dart' as http;
-
-import 'product_info.dart';
 import 'dart:async';
 
 class UserInfoModel {
@@ -17,7 +13,7 @@ class UserInfoModel {
   final String email;
   final String address;
   final int phone;
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final String version;
   final String token;
   UserInfoModel(

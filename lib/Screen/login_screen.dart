@@ -1,11 +1,7 @@
-import 'package:ecommerce/Model/login_model.dart';
-import 'package:ecommerce/Screen/Tabs/AppBar_Page.dart';
-import 'package:ecommerce/main.dart';
+import 'package:ecommerce/Model/Login_Model.dart';
+import 'package:ecommerce/Screen/Pages/AppBar_Page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Authentication_Service.dart';
-import 'package:provider/provider.dart';
 import 'package:ecommerce/Service/api_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -129,7 +125,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 40,
                 ),
-                if (_errorMessage != null && _errorMessage.isNotEmpty) Text('loi: $_errorMessage',style: Theme.of(context).textTheme.bodyText1,),
+                if (_errorMessage != null && _errorMessage.isNotEmpty)
+                  Text(
+                    'loi: $_errorMessage',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
                 Center(
                   child: Container(
                     height: 50,

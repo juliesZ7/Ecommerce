@@ -1,15 +1,17 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/Footer.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/Categories.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/Normal_list_of_product.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Repository/product/product_repository.dart';
+import 'package:ecommerce/Screen/Pages/HomePage/Footer.dart';
+import 'package:ecommerce/Screen/Pages/HomePage/categories.dart';
+import 'package:ecommerce/Screen/Pages/HomePage/normal_list_of_product.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   HomePageTab({this.cart, this.addItemCartCB, this.removeItemCartCB});
+  ProductRepository productRepository = new ProductRepository();
   @override
   _HomePageTabState createState() => _HomePageTabState(
       cart: cart,
@@ -18,7 +20,7 @@ class HomePageTab extends StatefulWidget {
 }
 
 class _HomePageTabState extends State<HomePageTab> {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   int bottomNavigationBarItemIndex = 0;

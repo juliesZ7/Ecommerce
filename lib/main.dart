@@ -1,7 +1,5 @@
-import 'package:ecommerce/Authentication_Service.dart';
-import 'package:ecommerce/Screen/Tabs/AppBar_Page.dart';
-import 'package:ecommerce/Screen/login_screen.dart';
-import 'package:ecommerce/Screen/register_screen.dart';
+import 'package:ecommerce/Screen/Pages/AppBar_Page.dart';
+import 'package:ecommerce/Service/Authentication_Service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Screen/WelcomePage.dart';
@@ -16,6 +14,7 @@ Future<void> main() async {
 }
 
 Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

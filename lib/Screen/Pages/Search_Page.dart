@@ -1,11 +1,11 @@
-import 'package:ecommerce/Model/product_info.dart';
-import 'package:ecommerce/Screen/Tabs/HomePage/normal_list_of_product.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Screen/Pages/HomePage/normal_list_of_product.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
   final String searchKeyFromMainPage;
-  final List<ProductInfoModel> cart;
-  final List<ProductInfoModel> product;
+  final List<APIProductModel> cart;
+  final List<APIProductModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   SearchPage(
@@ -25,11 +25,11 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final String searchKeyFromMainPage;
-  final List<ProductInfoModel> cart;
-  final List<ProductInfoModel> product;
+  final List<APIProductModel> cart;
+  final List<APIProductModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
-  final List<ProductInfoModel> searchResult = [];
+  final List<APIProductModel> searchResult = [];
   _SearchPageState(
       {this.cart,
       this.product,

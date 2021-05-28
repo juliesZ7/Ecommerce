@@ -1,10 +1,10 @@
-import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class NormalListOfProduct extends StatefulWidget {
-  final List<ProductInfoModel> cart;
-  final List<ProductInfoModel> product;
+  final List<APIProductModel> cart;
+  final List<APIProductModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   NormalListOfProduct(
@@ -18,8 +18,8 @@ class NormalListOfProduct extends StatefulWidget {
 }
 
 class _NormalListOfProductState extends State<NormalListOfProduct> {
-  final List<ProductInfoModel> cart;
-  final List<ProductInfoModel> product;
+  final List<APIProductModel> cart;
+  final List<APIProductModel> product;
   final Function(int) addItemCartCB;
   final Function(int) removeItemCartCB;
   _NormalListOfProductState(

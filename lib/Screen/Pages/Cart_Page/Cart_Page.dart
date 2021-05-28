@@ -1,8 +1,8 @@
-import 'package:ecommerce/Model/product_info.dart';
+import 'package:ecommerce/Model/Product_Info_Model.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final Function(int) removeCartItemCB;
 
   CartPage({this.cart, this.removeCartItemCB});
@@ -12,7 +12,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final List<ProductInfoModel> cart;
+  final List<APIProductModel> cart;
   final Function(int) removeItemCartCB;
 
   _CartPageState({this.cart, this.removeItemCartCB});

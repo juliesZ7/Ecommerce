@@ -1,4 +1,9 @@
 {
     "java.completion.enabled": false,
-    "java.debug.settings.enableRunDebugCodeLens": false
+    "java.debug.settings.enableRunDebugCodeLens": false,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#500362",
+        "titleBar.activeBackground": "#70058A",
+        "titleBar.activeForeground": "#FEFBFF"
+    }
 }
