@@ -39,7 +39,6 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController searchKey = new TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     searchKeyFromMainPage == null
         ? searchKey.text = null
