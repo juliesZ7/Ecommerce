@@ -46,35 +46,37 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (context, AsyncSnapshot<List<ProductModel>> snapshot) {
                   if (snapshot.hasData) {
                     final products = snapshot.data;
-                    return Column(
-                      children: [
-                        //AppBar
-                        MainAppBar(
-                          cart: cart,
-                          userState: userState,
-                        ),
-                        //Real body
-                        Container(
-                          height: heightScreen,
-                          width: widthScreen,
-                          child: Center(
-                            child: HomePageTab(
-                              cart: cart,
-                              addItemCartCB: (int index) {
-                                setState(() {
-                                  cart.add(products[index]);
-                                });
-                              },
-                              removeItemCartCB: (int index) {
-                                setState(() {
-                                  cart.remove(cart[index]);
-                                });
-                              },
-                              products: products,
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          //AppBar
+                          MainAppBar(
+                            cart: cart,
+                            userState: userState,
+                          ),
+                          //Real body
+                          Container(
+                            height: heightScreen,
+                            width: widthScreen,
+                            child: Center(
+                              child: HomePageTab(
+                                cart: cart,
+                                addItemCartCB: (int index) {
+                                  setState(() {
+                                    cart.add(products[index]);
+                                  });
+                                },
+                                removeItemCartCB: (int index) {
+                                  setState(() {
+                                    cart.remove(cart[index]);
+                                  });
+                                },
+                                products: products,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   }
                   return StreamBuilder(

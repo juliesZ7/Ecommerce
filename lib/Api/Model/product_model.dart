@@ -7,7 +7,7 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json)
       : _id = json['id'] ?? '',
-        _image = json['image'] ?? '',
+        _image = json['product_img'] ?? '',
         _name = json['name'] ?? '',
         _price = json['price'] ?? 0,
         _description = json['description'] ?? '';

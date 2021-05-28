@@ -84,10 +84,12 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                               children: [
                                 Center(
                                   child: Container(
-                                      height: 140,
-                                      child: Image(
-                                          image: AssetImage(
-                                              '${products[index].image}'))),
+                                    height: 140,
+                                    child: Image.network(
+                                      products[index].image,
+                                      width: 400,
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 10,

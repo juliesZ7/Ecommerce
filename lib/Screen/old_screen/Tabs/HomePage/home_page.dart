@@ -37,11 +37,9 @@ class _HomePageTabState extends State<HomePageTab> {
     this.removeItemCartCB,
     this.products,
   });
-  final LinearGradient _fontGradient =
-      LinearGradient(colors: <Color>[Colors.redAccent, Colors.orangeAccent]);
+
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
@@ -164,31 +162,26 @@ class _HomePageTabState extends State<HomePageTab> {
                                         onPressed: () {
                                           setState(() {
                                             Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  maintainState: false,
-                                                  builder: (context) =>
-                                                      ProductScreen(
-                                                    index: index,
-                                                    cart: cart,
-                                                    addItemCartCB:
-                                                        addItemCartCB,
-                                                    removeItemCartCB:
-                                                        removeItemCartCB,
-                                                  ),
-                                                ));
+                                              context,
+                                              MaterialPageRoute(
+                                                maintainState: false,
+                                                builder: (context) =>
+                                                    ProductScreen(
+                                                  index: index,
+                                                  cart: cart,
+                                                  addItemCartCB: addItemCartCB,
+                                                  removeItemCartCB:
+                                                      removeItemCartCB,
+                                                  products: products,
+                                                ),
+                                              ),
+                                            );
                                           });
                                         },
                                         child: Container(
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                // boxShadow: [
-                                                //   BoxShadow(
-                                                //     color: Colors.grey[700],
-                                                //     blurRadius: 10,
-                                                //   ),
-                                                // ],
                                                 color: Colors.white),
                                             width: 180,
                                             height: 250,
@@ -199,10 +192,12 @@ class _HomePageTabState extends State<HomePageTab> {
                                               children: [
                                                 Center(
                                                   child: Container(
-                                                      height: 140,
-                                                      child: Image(
-                                                          image: AssetImage(
-                                                              '${products[index].image}'))),
+                                                    height: 140,
+                                                    child: Image.network(
+                                                      products[index].image,
+                                                      width: 400,
+                                                    ),
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: 10,

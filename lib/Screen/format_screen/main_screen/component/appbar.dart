@@ -18,68 +18,59 @@ class MainAppBar extends StatefulWidget {
 class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      child: Center(
-        child: Container(
-          width: 1360,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _logo(),
-              _searchBar(),
-              // SizedBox(
-              //   width: 50,
-              // ),
-              //User State
-              Container(
-                height: 100,
-                width: 250,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                child: _changeUserState(),
-              ),
-              //Cart
-              _cart(),
-            ],
-          ),
-        ),
-      ),
+    return LayoutBuilder(
+      builder: (context, size) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _logo(),
+            _searchBar(),
+            Container(
+              height: 100,
+              width: 250,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(100)),
+              child: _changeUserState(),
+            ),
+            //Cart
+            _cart(),
+          ],
+        );
+      },
     );
   }
 
   _logo() {
     return Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 50),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    gradient: RadialGradient(center: Alignment.center, colors: [
-                      Colors.white.withAlpha(100),
-                      Colors.white.withAlpha(0)
-                    ])),
-              ),
-              IconButton(
-                  splashRadius: 20,
-                  hoverColor: Colors.transparent,
-                  iconSize: 100,
-                  onPressed: () {},
-                  icon: Image(
-                    image: AssetImage(
-                        'assets/graphics/Mod_Yourself_Logo_Transparent.jpg'),
-                  )),
-            ],
-          ),
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 50),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  gradient: RadialGradient(center: Alignment.center, colors: [
+                    Colors.white.withAlpha(100),
+                    Colors.white.withAlpha(0)
+                  ])),
+            ),
+            IconButton(
+                splashRadius: 20,
+                hoverColor: Colors.transparent,
+                iconSize: 100,
+                onPressed: () {},
+                icon: Image(
+                  image: AssetImage(
+                      'assets/graphics/Mod_Yourself_Logo_Transparent.jpg'),
+                )),
+          ],
         ),
-      
+      ),
     );
   }
 
