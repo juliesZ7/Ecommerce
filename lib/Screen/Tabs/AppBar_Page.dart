@@ -29,11 +29,6 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     bottomNavigationBarItemIndex = 0;
-    // if (token != null) {
-    //   userState = true;
-    // } else
-    //   userState = false;
-    // userState = true;
   }
 
   addCart(int index) {
@@ -139,6 +134,11 @@ class _MainPageState extends State<MainPage> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       SearchPage(
+                                                        cart: cart,
+                                                        product: product,
+                                                        removeItemCartCB:
+                                                            removeCart,
+                                                        addItemCartCB: addCart,
                                                         searchKeyFromMainPage:
                                                             summit,
                                                       )));
@@ -166,6 +166,8 @@ class _MainPageState extends State<MainPage> {
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           SearchPage(
+                                                            cart: cart,
+                                                            product: product,
                                                             searchKeyFromMainPage:
                                                                 searchKey.text,
                                                           )));

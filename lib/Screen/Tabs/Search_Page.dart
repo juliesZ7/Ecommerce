@@ -4,16 +4,38 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
   final String searchKeyFromMainPage;
-  SearchPage({this.searchKeyFromMainPage});
+  final List<ProductInfoModel> cart;
+  final List<ProductInfoModel> product;
+  final Function(int) addItemCartCB;
+  final Function(int) removeItemCartCB;
+  SearchPage(
+      {this.searchKeyFromMainPage,
+      this.cart,
+      this.product,
+      this.addItemCartCB,
+      this.removeItemCartCB});
   @override
-  _SearchPageState createState() =>
-      _SearchPageState(searchKeyFromMainPage: searchKeyFromMainPage);
+  _SearchPageState createState() => _SearchPageState(
+      cart: cart,
+      searchKeyFromMainPage: searchKeyFromMainPage,
+      product: product,
+      addItemCartCB: addItemCartCB,
+      removeItemCartCB: removeItemCartCB);
 }
 
 class _SearchPageState extends State<SearchPage> {
   final String searchKeyFromMainPage;
+  final List<ProductInfoModel> cart;
+  final List<ProductInfoModel> product;
+  final Function(int) addItemCartCB;
+  final Function(int) removeItemCartCB;
   final List<ProductInfoModel> searchResult = [];
-  _SearchPageState({this.searchKeyFromMainPage});
+  _SearchPageState(
+      {this.cart,
+      this.product,
+      this.addItemCartCB,
+      this.removeItemCartCB,
+      this.searchKeyFromMainPage});
   TextEditingController searchKey = new TextEditingController();
   @override
   void initState() {
@@ -28,42 +50,55 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Container(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: TextFormField(
-                      controller: searchKey,
-                      onFieldSubmitted: (summit) {
-                        setState(() {
-                          searchResult.clear();
-                          searchKey.text = summit;
-                        });
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: 'Search anything!',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50))),
+        child: Container(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }),
+                    Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: TextFormField(
+                        controller: searchKey,
+                        onFieldSubmitted: (summit) {
+                          setState(() {
+                            searchResult.clear();
+                            searchKey.text = summit;
+                          });
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            hintText: 'Search anything!',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50))),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: 1000,
-                    width: 1360,
-                    child: _search(searchKey.text),
-                  )
-                ],
-              ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: 1360,
+                  child: _search(searchKey.text),
+                )
+              ],
             ),
           ),
         ),
@@ -73,18 +108,30 @@ class _SearchPageState extends State<SearchPage> {
 
   _search(String text) {
     int i;
-    for (i = 0; i < product.length; i++) {
-      if (product[i].name.toLowerCase().contains(text.toLowerCase())) {
-        searchResult.add(product[i]);
-      }
-    }
-    if (searchResult.isEmpty)
+    if (text == '')
       return Center(
-        child: Text('No data'),
+        child: Text('Search something!'),
       );
     else {
-      i = 0;
-      return Center(child: NormalListOfProduct(product: searchResult));
+      for (i = 0; i < product.length; i++) {
+        if (product[i].name.toLowerCase().contains(text.toLowerCase())) {
+          searchResult.add(product[i]);
+        }
+      }
+      if (searchResult.isEmpty)
+        return Center(
+          child: Text('No data'),
+        );
+      else {
+        i = 0;
+        return Center(
+            child: NormalListOfProduct(
+          product: searchResult,
+          cart: cart,
+          addItemCartCB: addItemCartCB,
+          removeItemCartCB: removeItemCartCB,
+        ));
+      }
     }
   }
 }

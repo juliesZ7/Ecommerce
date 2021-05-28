@@ -8,14 +8,14 @@ class CartPage extends StatefulWidget {
   CartPage({this.cart, this.removeCartItemCB});
   @override
   _CartPageState createState() =>
-      _CartPageState(cart: cart, removeCartItemCB: removeCartItemCB);
+      _CartPageState(cart: cart, removeItemCartCB: removeCartItemCB);
 }
 
 class _CartPageState extends State<CartPage> {
   final List<ProductInfoModel> cart;
-  final Function(int) removeCartItemCB;
+  final Function(int) removeItemCartCB;
 
-  _CartPageState({this.cart, this.removeCartItemCB});
+  _CartPageState({this.cart, this.removeItemCartCB});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,14 @@ class _CartPageState extends State<CartPage> {
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                      ),
                       Column(
                         children: [
                           Text(
@@ -89,7 +97,7 @@ class _CartPageState extends State<CartPage> {
                                       TextButton(
                                         onPressed: () {
                                           setState(() {
-                                            return removeCartItemCB(index);
+                                            return removeItemCartCB(index);
                                           });
                                         },
                                         child: Icon(
@@ -133,12 +141,28 @@ class _CartPageState extends State<CartPage> {
                               ))),
                     ],
                   )
-                : Center(
-                    child: Column(
+                : Column(
                     children: [
-                      Text('No Items'),
+                      Container(
+                        color: Colors.white,
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                      ),
+                      Center(
+                          child: Column(
+                        children: [
+                          Text('No Items'),
+                        ],
+                      )),
                     ],
-                  )),
+                  ),
           ),
         ),
       ),
