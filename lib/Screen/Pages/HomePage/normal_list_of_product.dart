@@ -1,4 +1,4 @@
-import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Model/API_Product_Model.dart';
 import 'package:ecommerce/Screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,25 +24,38 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
   final Function(int) removeItemCartCB;
   _NormalListOfProductState(
       {this.cart, this.product, this.addItemCartCB, this.removeItemCartCB});
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 1280,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-            child: Container(
-              height: 300,
-              child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
+    return LayoutBuilder(builder: (BuildContext context, contraint) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 1280,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+              child: Container(
+                height: 300,
+                child: GridView.builder(
+                  padding: EdgeInsets.only(bottom: 30),
+                  itemCount: product.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 0.9),
+                  itemBuilder: (BuildContext context, int index) {
                     return Container(
                       alignment: Alignment.topCenter,
                       child: TextButton(
@@ -75,9 +88,8 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                                 Center(
                                   child: Container(
                                       height: 140,
-                                      child: Image(
-                                          image: AssetImage(
-                                              '${product[index].image}'))),
+                                      child: Image.network(
+                                          '${product[index].image}')),
                                 ),
                                 SizedBox(
                                   height: 10,
@@ -111,14 +123,12 @@ class _NormalListOfProductState extends State<NormalListOfProduct> {
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) => SizedBox(
-                        width: 15,
-                      ),
-                  itemCount: product.length),
+                ),
+              ),
             ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }

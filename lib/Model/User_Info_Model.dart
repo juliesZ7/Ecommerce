@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Model/API_Product_Model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 

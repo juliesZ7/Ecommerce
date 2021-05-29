@@ -1,7 +1,5 @@
-
-
 import 'package:ecommerce/Bloc/block_state.dart';
-import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Model/API_Product_Model.dart';
 import 'package:ecommerce/Repository/product/product_repository.dart';
 import 'package:rxdart/rxdart.dart';
 

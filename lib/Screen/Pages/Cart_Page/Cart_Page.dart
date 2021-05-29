@@ -1,14 +1,14 @@
-import 'package:ecommerce/Model/Product_Info_Model.dart';
+import 'package:ecommerce/Model/API_Product_Model.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
   final List<APIProductModel> cart;
-  final Function(int) removeCartItemCB;
+  final Function(int) removeItemCartCB;
 
-  CartPage({this.cart, this.removeCartItemCB});
+  CartPage({this.cart, this.removeItemCartCB});
   @override
   _CartPageState createState() =>
-      _CartPageState(cart: cart, removeItemCartCB: removeCartItemCB);
+      _CartPageState(cart: cart, removeItemCartCB: removeItemCartCB);
 }
 
 class _CartPageState extends State<CartPage> {
@@ -64,10 +64,8 @@ class _CartPageState extends State<CartPage> {
                                     children: [
                                       Container(
                                         height: 50,
-                                        child: Image(
-                                          image: AssetImage(
-                                              '${cart[index].image}'),
-                                        ),
+                                        child: Image.network(
+                                            '${cart[index].image}'),
                                       ),
                                       Expanded(
                                         child: Container(
